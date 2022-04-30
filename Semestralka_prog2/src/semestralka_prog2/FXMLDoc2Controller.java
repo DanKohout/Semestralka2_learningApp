@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author kristyna kohoutova
+ * @author daniel kohout
  */
 public class FXMLDoc2Controller implements Initializable {
 
