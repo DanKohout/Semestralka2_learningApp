@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 /**
  * class made for creating and managing file that is read from and etc.
+ *
  * @author daniel kohout
  */
 public class file {
@@ -16,10 +17,8 @@ public class file {
     private File newFile;
     private String name;
     private String folder;
-    //words in first language
-    private ArrayList<String> language1;
-    //words in second language
-    private ArrayList<String> language2;
+    //vocabulary
+    private ArrayList<Word> words;
 
     /**
      * creates file in default folder
@@ -57,13 +56,35 @@ public class file {
      * @param b word in second language
      */
     public void addNewWord(String a, String b) {
-        language1.add(a);
-        language2.add(b);
+        Word word = new Word(a, b);
+        words.add(word);
+
     }
 
+    /**
+     * @param index
+     * @return
+     */
     public Word getWord(int index) {
-        Word word = new Word(language1.get(index), language2.get(index));
+        Word word = new Word(words.get(index).getWord(), words.get(index).getTransl());
         return word;
+    }
+
+    /**
+     * @param index
+     */
+    public void removeWord(int index) {
+        words.remove(index);
+    }
+
+    /**
+     * @param index
+     * @param a
+     * @param b
+     */
+    public void changeWord(int index, String a, String b) {
+        words.remove(index);
+        words.add(new Word(a, b));
     }
 
 }

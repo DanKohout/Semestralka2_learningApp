@@ -18,4 +18,12 @@ public class Word {
         this.word = word;
         this.translation = translation;
     }
+
+    public String getWord() {
+        return word;
+    }
+
+    public String getTransl() {
+        return translation;
+    }
 }
