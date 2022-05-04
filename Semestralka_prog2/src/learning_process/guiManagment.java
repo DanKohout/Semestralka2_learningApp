@@ -11,7 +11,7 @@ package learning_process;
 public class guiManagment {
 
     /**
-     *creates another window meant for learning 
+     *"creates" another window meant for learning 
      */
     public void createWindow() {
 
