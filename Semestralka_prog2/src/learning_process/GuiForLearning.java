@@ -5,10 +5,10 @@
 package learning_process;
 
 /**
- *
+ * 
  * @author daniel kohout
  */
-public class guiManagment {
+public class GuiForLearning {
 
     /**
      *"creates" another window meant for learning (creates it on top of the menu)

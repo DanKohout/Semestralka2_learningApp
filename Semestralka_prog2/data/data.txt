@@ -1,0 +1,2 @@
+cist=read
+poslouchat=listen

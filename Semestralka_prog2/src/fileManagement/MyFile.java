@@ -20,6 +20,7 @@ public class MyFile {
     private String folder;
     //vocabulary
     private ArrayList<Word> words;
+
     /**
      * creates file in default folder
      *
@@ -30,13 +31,15 @@ public class MyFile {
     }
 
     public MyFile(String name, String folder) {
-        createFile(name, folder);
+        this.name = name;
+        this.folder = folder;
+        //createFile(name, folder);
+        assignToExistingFile(name, folder);
     }
 
     public String getName() {
         return name;
     }
-    
 
     /**
      * @param folder
@@ -57,13 +60,19 @@ public class MyFile {
         }
     }
 
-    /**
-     * @return
-     */
-    public boolean checkFileExists() {
-        return false;
+    private void assignToExistingFile(String name, String folder) {
+        String a = name + ".txt";
+        newFile = new File(folder + a);
+        if (newFile.exists()) {
+            System.out.println("file exists (success)");
+
+        }
     }
 
+    /* 
+    public boolean checkFileExists() {
+        return false;
+    }*/
     /**
      * @param a word in first language
      * @param b word in second language
@@ -98,6 +107,10 @@ public class MyFile {
     public void changeWord(int index, String a, String b) {
         words.remove(index);
         words.add(new Word(a, b));
+    }
+
+    public void writeInFile() {
+
     }
 
 }

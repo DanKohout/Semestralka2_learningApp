@@ -28,7 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.collections.ObservableList;
 
 /**
- * file for
+ * UI controller
  *
  * @author daniel kohout
  */
@@ -44,6 +44,12 @@ public class FXMLDocumentController implements Initializable {
     private Button removeFileTXT;
     @FXML
     private TextField textfieldIN;
+    @FXML
+    private TextField AddTranslTextField;
+    @FXML
+    private TextField AddWordTextField;
+    @FXML
+    private Button addWordBtn;
 
     BufferedWriter reader1;
     ArrayList<MyFile> files;
@@ -77,15 +83,25 @@ public class FXMLDocumentController implements Initializable {
     public void update() {
         comboboxesValues.clear();
         //deleteFileComboBox.getItems().clear();
-        for (int i = 0; i < files.size() - 1; i++) {
+        for (int i = 0; i < files.size(); i++) {
             comboboxesValues.add(files.get(i).getName());
         }
+        
+
+    }
+
+    /**
+     * checking for files in folder data
+     */
+    public void checkForFiles() {
 
     }
 
     @FXML
     void start(ActionEvent event) {
-
+        //System.out.println(files.size());
+        //System.out.println(comboboxesValues.size());
+        //System.out.println(files.get(0).getName());
     }
 
     public void createFile() {
@@ -104,8 +120,11 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         comboboxesValues = FXCollections.observableArrayList();
+        chooseFileComboBox.setItems(comboboxesValues);
+        deleteFileComboBox.setItems(comboboxesValues);
+        
         files = new ArrayList<MyFile>();
-        //update();
+        update();
         createFile();
 
     }
