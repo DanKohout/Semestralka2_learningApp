@@ -8,42 +8,53 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="504.0" prefWidth="737.0" style="-fx-background-color: #0c120c;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semestralka_prog2.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="672.0" prefWidth="893.0" style="-fx-background-color: #170909;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semestralka_prog2.FXMLDocumentController">
     <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6d7275" height="277.0" layoutX="431.0" layoutY="82.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="295.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c20114" height="277.0" layoutX="14.0" layoutY="82.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="295.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6d7275" height="112.0" layoutX="28.0" layoutY="92.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="258.0" />
-        <Button fx:id="button" layoutX="38.0" layoutY="434.0" style="-fx-background-color: #1a4546;" text="START" textFill="WHITE">
-         <font>
-            <Font name="Arial Black" size="14.0" />
-         </font></Button>
-        <Label layoutX="41.0" layoutY="101.0" minHeight="16" minWidth="69" text="zadejte adresář txt souboru pro načtení dat" textFill="WHITE" />
-      <TextField fx:id="textfieldIN" layoutX="42.0" layoutY="123.0" prefHeight="25.0" prefWidth="229.0" />
-      <Label layoutX="302.0" layoutY="14.0" text="Menu" textFill="#ecebf3">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333333" height="277.0" layoutX="510.0" layoutY="158.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="295.0" />
+      <AnchorPane layoutX="36.0" layoutY="92.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#05b07713" height="342.0" layoutX="2.0" stroke="#05b373" strokeType="OUTSIDE" strokeWidth="2.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="359.0" />
+            <TextField fx:id="textfieldIN" layoutX="34.0" layoutY="82.0" prefHeight="25.0" prefWidth="295.0" style="-fx-background-color: #252525;" />
+              <Label layoutX="33.0" layoutY="27.0" minHeight="16" minWidth="69" text="zadejte adresář txt souboru &#10;pro načtení dat" textFill="#ababab">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="addTXTb" layoutX="262.0" layoutY="130.0" mnemonicParsing="false" onAction="#addFile" prefHeight="33.0" prefWidth="66.0" style="-fx-background-color: #333; -fx-background-radius: 17px;" text="Add" textFill="#04d384">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="removeFileTXT" layoutX="238.0" layoutY="279.0" mnemonicParsing="false" onAction="#removeFile" prefHeight="33.0" prefWidth="91.0" style="-fx-background-color: #333; -fx-background-radius: 17px;" text="Remove" textFill="#04d384">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="deleteFileComboBox" layoutX="34.0" layoutY="233.0" prefHeight="25.0" prefWidth="295.0" style="-fx-background-color: #333;" />
+            <Label layoutX="33.0" layoutY="172.0" minHeight="16" minWidth="69" prefHeight="42.0" prefWidth="229.0" text="vyberte soubor, který chcete&#10;vymazat z aplikace" textFill="#ababab">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="390.0" layoutY="16.0" text="Menu" textFill="#282828">
          <font>
             <Font name="System Bold" size="49.0" />
          </font>
       </Label>
-      <Button layoutX="192.0" layoutY="161.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" style="-fx-background-color: #c7d6d5;" text="Přidat">
+      <Label layoutX="390.0" layoutY="16.0" text="Menu" textFill="#ababab">
+         <font>
+            <Font name="System Bold" size="49.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7d6d5" height="112.0" layoutX="529.0" layoutY="175.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="258.0" />
+      <ComboBox fx:id="chooseFileComboBox" layoutX="543.0" layoutY="206.0" prefHeight="25.0" prefWidth="229.0" />
+      <Label layoutX="543.0" layoutY="187.0" minHeight="16" minWidth="69" text="vyberte soubor ze ktereho se chcete ucit" />
+      <Button layoutX="692.0" layoutY="237.0" mnemonicParsing="false" onAction="#start" prefHeight="33.0" prefWidth="78.0" style="-fx-background-color: #c20114;" text="button" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="15.0" />
          </font>
       </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7d6d5" height="112.0" layoutX="450.0" layoutY="92.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="258.0" />
-      <ComboBox layoutX="466.0" layoutY="123.0" prefHeight="25.0" prefWidth="229.0" />
-      <Label layoutX="473.0" layoutY="101.0" minHeight="16" minWidth="69" text="vyberte soubor ze ktereho se chcete ucit" />
-      <Button layoutX="617.0" layoutY="161.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" style="-fx-background-color: #c20114;" text="button" textFill="WHITE">
-         <font>
-            <Font name="Arial Black" size="15.0" />
-         </font>
-      </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7d6d5" height="112.0" layoutX="452.0" layoutY="225.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="258.0" />
-      <ComboBox layoutX="466.0" layoutY="252.0" prefHeight="25.0" prefWidth="229.0" />
-      <Button layoutX="610.0" layoutY="288.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" style="-fx-background-color: #c20114;" text="remove" textFill="WHITE">
-         <font>
-            <Font name="Arial Black" size="15.0" />
-         </font>
-      </Button>
-      <Label layoutX="484.0" layoutY="231.0" minHeight="16" minWidth="69" text="vyberte soubor, který chcete vymazat" />
     </children>
 </AnchorPane>

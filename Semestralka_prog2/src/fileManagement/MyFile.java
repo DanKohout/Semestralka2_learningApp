@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fileManagment;
+package fileManagement;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -12,35 +13,47 @@ import java.util.ArrayList;
  *
  * @author daniel kohout
  */
-public class file {
+public class MyFile {
 
     private File newFile;
     private String name;
     private String folder;
     //vocabulary
     private ArrayList<Word> words;
-
     /**
      * creates file in default folder
      *
      * @param name
      */
-    public file(String name) {
+    public MyFile(String name) {
 
     }
 
-    public file(String name, String folder) {
+    public MyFile(String name, String folder) {
         createFile(name, folder);
     }
+
+    public String getName() {
+        return name;
+    }
+    
 
     /**
      * @param folder
      * @param name
      */
     private void createFile(String name, String folder) {
-        newFile = new File(name + ".txt");
-        if (newFile.exists()) {
-            System.out.println("file already exists");
+        String a = /*folder + */ name + ".txt";
+        try {//vytvareni souboru se slozkou data
+            newFile = new File(folder + a);
+            newFile.getParentFile().mkdirs();
+            if (newFile.createNewFile()) {
+                System.out.println("File created: " + newFile.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while creating file data. " + e.getMessage());
         }
     }
 
