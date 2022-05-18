@@ -4,7 +4,10 @@
  */
 package fileManagement;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,15 +29,15 @@ public class MyFile {
      *
      * @param name
      */
-    public MyFile(String name) {
+    /* public MyFile(String name) {
 
-    }
-
-    public MyFile(String name, String folder) {
+    }*/
+    public MyFile(String name, String folder) throws IOException {
+        words = new ArrayList<>();
         this.name = name;
         this.folder = folder;
-        //createFile(name, folder);
-        assignToExistingFile(name, folder);
+        createFile(name, folder);
+        //assignToExistingFile(name, folder);
     }
 
     public String getName() {
@@ -53,19 +56,35 @@ public class MyFile {
             if (newFile.createNewFile()) {
                 System.out.println("File created: " + newFile.getName());
             } else {
-                System.out.println("File already exists.");
+                assignToExistingFile(name, folder);
             }
         } catch (IOException e) {
             System.out.println("An error occurred while creating file data. " + e.getMessage());
         }
     }
 
-    private void assignToExistingFile(String name, String folder) {
+    private void assignToExistingFile(String name, String folder) throws IOException {
         String a = name + ".txt";
         newFile = new File(folder + a);
         if (newFile.exists()) {
             System.out.println("file exists (success)");
+            readFile(newFile);
+        }
+    }
 
+    private void readFile(File file) throws FileNotFoundException, IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            int radek = 0;
+            while (((line = br.readLine()) != null)) {
+                radek++;
+                String[] splitString = line.split("=");
+                if (splitString.length == 2) {
+                    addNewWord(splitString[0], splitString[1]);
+                } else {
+                    System.out.println("chyba na radku " + radek);
+                }
+            }
         }
     }
 
@@ -107,6 +126,10 @@ public class MyFile {
     public void changeWord(int index, String a, String b) {
         words.remove(index);
         words.add(new Word(a, b));
+    }
+
+    public int getNumOfWords() {
+        return words.size();
     }
 
     public void writeInFile() {

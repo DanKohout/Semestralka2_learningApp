@@ -10,6 +10,7 @@ import learning_process.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +27,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 
 /**
  * UI controller
@@ -50,6 +53,15 @@ public class FXMLDocumentController implements Initializable {
     private TextField AddWordTextField;
     @FXML
     private Button addWordBtn;
+//------------learningGUI-----------------
+    @FXML
+    private Rectangle card;
+    @FXML
+    private Button nextBtn;
+    @FXML
+    private AnchorPane learningGUI;
+    @FXML
+    private Label vocabLabel;
 
     BufferedWriter reader1;
     ArrayList<MyFile> files;
@@ -58,6 +70,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     void addFile(ActionEvent event) {
 
+    }
+
+    @FXML
+    void exitLearning(ActionEvent event) {
+        learningGUI.setVisible(false);
     }
 
     @FXML
@@ -86,7 +103,6 @@ public class FXMLDocumentController implements Initializable {
         for (int i = 0; i < files.size(); i++) {
             comboboxesValues.add(files.get(i).getName());
         }
-        
 
     }
 
@@ -97,14 +113,37 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    private int getFileIndex(String name) throws FileNotFoundException {
+        int index = -1;
+        for (MyFile file : files) {
+            if (name.equals(file.getName())) {
+                index = files.indexOf(file);
+                break;
+            }
+        }
+        if (index == -1) {
+            throw new FileNotFoundException("file not found");
+        }
+        return index;
+    }
+
     @FXML
     void start(ActionEvent event) {
         //System.out.println(files.size());
         //System.out.println(comboboxesValues.size());
         //System.out.println(files.get(0).getName());
+        //if(chooseFileComboBox.getValue())
+        try {
+            GuiForLearning learn = new GuiForLearning(files.get(getFileIndex(chooseFileComboBox.getValue())), learningGUI, vocabLabel, card, nextBtn);
+            //learn.createWindow(learningGUI, vocabLabel, card);
+            learn.start();
+            learningGUI.setVisible(true);
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void createFile() {
+    public void createFile() throws IOException {
         files.add(new MyFile("data", "data/"));
         update();
     }
@@ -122,10 +161,13 @@ public class FXMLDocumentController implements Initializable {
         comboboxesValues = FXCollections.observableArrayList();
         chooseFileComboBox.setItems(comboboxesValues);
         deleteFileComboBox.setItems(comboboxesValues);
-        
+        learningGUI.setVisible(false);
         files = new ArrayList<MyFile>();
         update();
-        createFile();
+        try {
+            createFile();
+        } catch (IOException e) {
+        }
 
     }
 
