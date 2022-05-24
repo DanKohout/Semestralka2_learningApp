@@ -24,6 +24,15 @@ public class GuiForLearning {
     private boolean transl = false;
     private int index = 0;
 
+    /**
+     * constructor for class
+     *
+     * @param file - file from which we will get the words
+     * @param learningGUI - for making learning gui visible
+     * @param vocabLabel - label for the word we want to project
+     * @param card - rectangle which is "card" on which are the words projected
+     * @param nextBtn - for going to next word
+     */
     public GuiForLearning(MyFile file, AnchorPane learningGUI, Label vocabLabel, Rectangle card, Button nextBtn) {
         this.file = file;
         this.learningGUI = learningGUI;
@@ -37,32 +46,48 @@ public class GuiForLearning {
      * menu)
      */
     public void start() {
+        learningGUI.setVisible(true);
         setLabel();
         getNext();
     }
 
+    /**
+     * for getting to next word(vocable)
+     */
     private void getNext() {
         nextBtn.setOnAction(v -> {
             //System.out.println("in");
-            index++;
-            transl = false;
-            if (index >= file.getNumOfWords()) {
-                index = 0;
+            if (file.getNumOfWords() != 0) {
+                index++;
+                transl = false;
+                if (index >= file.getNumOfWords()) {
+                    index = 0;
+                }
+                vocabLabel.setText(file.getWord(index).getWord());
+            } else {
+                vocabLabel.setText("file is\n empty");
             }
-            vocabLabel.setText(file.getWord(index).getWord());
         });
 
     }
 
+    /**
+     * Method for managment of changing word to translation. It creates event
+     * for clicking the "card" on which is the word projected
+     */
     private void setLabel() {
         vocabLabel.setText(file.getWord(index).getWord());
         transl = false;
         card.setOnMouseClicked(v -> {
             transl = !transl;
-            if (transl) {
-                vocabLabel.setText(file.getWord(index).getTransl());
+            if (file.getNumOfWords() != 0) {
+                if (transl) {
+                    vocabLabel.setText(file.getWord(index).getTransl());
+                } else {
+                    vocabLabel.setText(file.getWord(index).getWord());
+                }
             } else {
-                vocabLabel.setText(file.getWord(index).getWord());
+                vocabLabel.setText("file is\n empty");
             }
         });
 

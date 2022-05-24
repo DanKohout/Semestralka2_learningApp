@@ -21,8 +21,8 @@ public class MyFile {
     private File newFile;
     private String name;
     private String folder;
-    //vocabulary
-    private ArrayList<Word> words;
+
+    private ArrayList<Word> words;//vocabulary
 
     /**
      * creates file in default folder
@@ -52,9 +52,15 @@ public class MyFile {
         String a = /*folder + */ name + ".txt";
         try {//vytvareni souboru se slozkou data
             newFile = new File(folder + a);
-            newFile.getParentFile().mkdirs();
+            if (newFile.getParentFile() != null) {
+                newFile.getParentFile().mkdirs();
+            } else {
+                System.out.println("newFile getparentFile==null !!!");
+            }
+
             if (newFile.createNewFile()) {
                 System.out.println("File created: " + newFile.getName());
+
             } else {
                 assignToExistingFile(name, folder);
             }
@@ -63,6 +69,33 @@ public class MyFile {
         }
     }
 
+    /**
+     * @param folder
+     * @param name
+     */
+    private void createFile(String name, String folder, boolean b) {
+        String a = name + ".txt";
+        try {//vytvareni souboru se slozkou data
+            newFile = new File(folder + a);
+            if (newFile.getParentFile() != null) {
+                newFile.getParentFile().mkdirs();
+            } else {
+                System.out.println("newFile getparentFile==null !!!");
+            }
+
+            if (newFile.createNewFile()) {
+                System.out.println("File created: " + newFile.getName());
+
+            } else {
+                assignToExistingFile(name, folder);
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while creating file data. " + e.getMessage());
+        }
+    }
+
+    /**
+     */
     private void assignToExistingFile(String name, String folder) throws IOException {
         String a = name + ".txt";
         newFile = new File(folder + a);
@@ -72,6 +105,8 @@ public class MyFile {
         }
     }
 
+    /**
+     */
     private void readFile(File file) throws FileNotFoundException, IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
@@ -136,4 +171,28 @@ public class MyFile {
 
     }
 
+    public String getAllWords() {
+        StringBuilder sb = new StringBuilder();
+        for (Word w : words) {
+            sb.append(w);
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+
+    /*
+public void saveToFile(File results) throws IOException{
+        try(PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(results)))){
+            //new PrintWriter(new OutputStreamWriter () pouzit, kdyz chci kodovani
+            sortByRunTime();
+            int n = 1;
+            for (Runner runner : runners) {
+               pw.print(n + ". ");
+               pw.println(runner.toString());
+               n++;
+            }
+        }
+    }
+     */
 }
