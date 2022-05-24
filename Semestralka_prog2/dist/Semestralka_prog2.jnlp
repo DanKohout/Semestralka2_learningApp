@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Semestralka_prog2.jar" size="12686" download="eager" />
+    <jar href="Semestralka_prog2.jar" size="13384" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="semestralka_prog2.Semestralka_prog2"  name="Semestralka_prog2" />
   <update check="always"/>

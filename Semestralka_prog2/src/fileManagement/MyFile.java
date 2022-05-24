@@ -5,10 +5,13 @@
 package fileManagement;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -73,7 +76,7 @@ public class MyFile {
      * @param folder
      * @param name
      */
-    private void createFile(String name, String folder, boolean b) {
+    /*private void createFile(String name, String folder, boolean b) {
         String a = name + ".txt";
         try {//vytvareni souboru se slozkou data
             newFile = new File(folder + a);
@@ -92,8 +95,7 @@ public class MyFile {
         } catch (IOException e) {
             System.out.println("An error occurred while creating file data. " + e.getMessage());
         }
-    }
-
+    }*/
     /**
      */
     private void assignToExistingFile(String name, String folder) throws IOException {
@@ -119,6 +121,17 @@ public class MyFile {
                 } else {
                     System.out.println("chyba na radku " + radek);
                 }
+            }
+        }
+    }
+
+    public void overwriteFile() throws FileNotFoundException, IOException {
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(newFile)))) {
+            //new PrintWriter(new OutputStreamWriter () pouzit, kdyz chci kodovani
+            int n = 1;
+            for (Word w : words) {
+                pw.println(w.getWord() + "=" + w.getTransl());
+                n++;
             }
         }
     }
@@ -150,6 +163,23 @@ public class MyFile {
      * @param index
      */
     public void removeWord(int index) {
+        words.remove(index);
+    }
+
+    /**
+     * @param index
+     */
+    public void removeWord(String s) {
+        int index = -1;
+        for (Word w : words) {
+            if (s.equals(w.getWord())) {
+                index = words.indexOf(w);
+                break;
+            }
+        }
+        if (index == -1) {
+            System.out.println("word not found");
+        }
         words.remove(index);
     }
 

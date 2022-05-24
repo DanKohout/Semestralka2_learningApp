@@ -67,6 +67,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField AddWordTextField;
     @FXML
+    private TextField RemoveWordTextField;
+    @FXML
     private TextArea displayWordsArea;
 //------------learningGUI-----------------
     @FXML
@@ -156,7 +158,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    void start(ActionEvent event) {
+    void start() {
         //System.out.println(files.size());
         //System.out.println(comboboxesValues.size());
         //System.out.println(files.get(0).getName());
@@ -218,6 +220,31 @@ public class FXMLDocumentController implements Initializable {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    void removeWord() {
+        try {
+            if ((!RemoveWordTextField.getText().equals(""))) {
+                System.out.println("in remove word");
+                files.get(getFileIndex(changeComboBox1.getValue())).removeWord(RemoveWordTextField.getText());
+                refreshChange();
+            } else {
+                msgLabel.setText("not enough inputs");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    void saveFile() throws FileNotFoundException, IOException {
+        if ((changeComboBox1.getValue() != null)) {
+            files.get(getFileIndex(changeComboBox1.getValue())).overwriteFile();
+        } else {
+            System.out.println("error in saving file, file not found");
+            msgLabel.setText("choose file please");
         }
     }
 
