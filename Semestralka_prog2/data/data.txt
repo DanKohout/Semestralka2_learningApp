@@ -1,2 +1,5 @@
 cist=read
 poslouchat=listen
+kohout=cock
+problémek?=Clueless
+1=one

@@ -21,6 +21,7 @@ public class GuiForLearning {
     private Label vocabLabel;
     private Rectangle card;
     private Button nextBtn;
+    private Button knowAlreadyB;
     private boolean transl = false;
     private int index = 0;
 
@@ -33,12 +34,13 @@ public class GuiForLearning {
      * @param card - rectangle which is "card" on which are the words projected
      * @param nextBtn - for going to next word
      */
-    public GuiForLearning(MyFile file, AnchorPane learningGUI, Label vocabLabel, Rectangle card, Button nextBtn) {
+    public GuiForLearning(MyFile file, AnchorPane learningGUI, Label vocabLabel, Rectangle card, Button nextBtn, Button knowAlreadyB) {
         this.file = file;
         this.learningGUI = learningGUI;
         this.vocabLabel = vocabLabel;
         this.card = card;
         this.nextBtn = nextBtn;
+        this.knowAlreadyB = knowAlreadyB;
     }
 
     /**
@@ -49,6 +51,7 @@ public class GuiForLearning {
         learningGUI.setVisible(true);
         setLabel();
         getNext();
+        setKnowAlreadyB();
     }
 
     /**
@@ -76,7 +79,9 @@ public class GuiForLearning {
      * for clicking the "card" on which is the word projected
      */
     private void setLabel() {
-        vocabLabel.setText(file.getWord(index).getWord());
+        if (file.getNumOfWords() != 0) {
+            vocabLabel.setText(file.getWord(index).getWord());
+        }
         transl = false;
         card.setOnMouseClicked(v -> {
             transl = !transl;
@@ -87,10 +92,20 @@ public class GuiForLearning {
                     vocabLabel.setText(file.getWord(index).getWord());
                 }
             } else {
-                vocabLabel.setText("file is\n empty");
+                vocabLabel.setText(" file is\n empty");
             }
         });
 
+    }
+
+    private void setKnowAlreadyB() {
+        knowAlreadyB.setOnAction(v -> {
+            if (file.getNumOfWords() != 0) {
+                file.getWord(index).know();
+            } else {
+                vocabLabel.setText("no words\nfound");
+            }
+        });
     }
 
 }

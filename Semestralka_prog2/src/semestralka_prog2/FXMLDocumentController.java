@@ -76,6 +76,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button nextBtn;
     @FXML
+    private Button knowAlreadyButton;
+    @FXML
     private AnchorPane learningGUI;
     @FXML
     private Label vocabLabel;
@@ -158,16 +160,15 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    void start() {
-        //System.out.println(files.size());
-        //System.out.println(comboboxesValues.size());
-        //System.out.println(files.get(0).getName());
-        //if(chooseFileComboBox.getValue())
+    public void start() {
         try {
-            GuiForLearning learn = new GuiForLearning(files.get(getFileIndex(chooseFileComboBox.getValue())), learningGUI, vocabLabel, card, nextBtn);
-            //learn.createWindow(learningGUI, vocabLabel, card);
-            learn.start();
-            //learningGUI.setVisible(true);
+            try {
+                GuiForLearning learn = new GuiForLearning(files.get(getFileIndex(chooseFileComboBox.getValue())), learningGUI, vocabLabel, card, nextBtn, knowAlreadyButton);
+                learn.start();
+                msgLabel.setText("");
+            } catch (NullPointerException e) {
+                msgLabel.setText("File not chosen.");
+            }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }

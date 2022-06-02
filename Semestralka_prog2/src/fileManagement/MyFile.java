@@ -167,7 +167,7 @@ public class MyFile {
     }
 
     /**
-     * @param index
+     * @param s
      */
     public void removeWord(String s) {
         int index = -1;
