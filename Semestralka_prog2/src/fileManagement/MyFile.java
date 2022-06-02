@@ -155,8 +155,7 @@ public class MyFile {
      * @return
      */
     public Word getWord(int index) {
-        Word word = new Word(words.get(index).getWord(), words.get(index).getTransl());
-        return word;
+        return words.get(index);
     }
 
     /**
@@ -208,6 +207,15 @@ public class MyFile {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    public boolean knowAllWords() {
+        for (Word w : words) {
+            if (!w.getKnow()) {
+                return false;
+            }
+        }
+        return true;
     }
 
 

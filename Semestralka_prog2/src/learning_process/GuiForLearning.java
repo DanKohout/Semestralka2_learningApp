@@ -59,19 +59,26 @@ public class GuiForLearning {
      */
     private void getNext() {
         nextBtn.setOnAction(v -> {
-            //System.out.println("in");
-            if (file.getNumOfWords() != 0) {
-                index++;
-                transl = false;
-                if (index >= file.getNumOfWords()) {
-                    index = 0;
-                }
-                vocabLabel.setText(file.getWord(index).getWord());
-            } else {
-                vocabLabel.setText("file is\n empty");
-            }
+            next();
         });
 
+    }
+
+    private void next() {
+        if (file.getNumOfWords() != 0 && !file.knowAllWords()) {
+            index++;
+            transl = false;
+            if (index >= file.getNumOfWords()) {
+                index = 0;
+            }
+            if (file.getWord(index).getKnow()) {
+                next();
+            } else {
+                vocabLabel.setText(file.getWord(index).getWord());
+            }
+        } else {
+            vocabLabel.setText(" file is\n empty");
+        }
     }
 
     /**

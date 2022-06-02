@@ -21,6 +21,7 @@ public class Word implements Comparable<Word> {
     public Word(String word, String translation) {
         this.word = word;
         this.translation = translation;
+        //knowAlready = false;
     }
 
     public String getWord() {
@@ -32,7 +33,14 @@ public class Word implements Comparable<Word> {
     }
 
     public void know() {
-        knowAlready = true;
+        this.knowAlready = true;
+        //System.out.println("in know" + knowAlready);
+        //System.out.println(getKnow());
+    }
+
+    public boolean getKnow() {
+        //System.out.println("know = " + knowAlready);
+        return knowAlready;
     }
 
     @Override
@@ -42,6 +50,7 @@ public class Word implements Comparable<Word> {
 
     @Override
     public String toString() {
-        return String.format("%s = %s ", getWord(),getTransl());// getWord() + " = " + getTransl();
+        return String.format("%s = %s ", getWord(), getTransl());// getWord() + " = " + getTransl();
     }
+
 }
