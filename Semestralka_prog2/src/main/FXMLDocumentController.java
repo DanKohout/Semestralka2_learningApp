@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML2.java to edit this template
  */
-package semestralka_prog2;
+package main;
 
 import fileManagement.*;
 import learning_process.*;
@@ -54,6 +54,9 @@ public class FXMLDocumentController implements Initializable {
     private TextField textfieldIN;
     @FXML
     private Label msgLabel;
+//---------------library------------------
+    @FXML
+    private AnchorPane AnchorLibrary;
 
 //-------------change file----------------
     @FXML
@@ -89,7 +92,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void addFile(ActionEvent event) throws IOException {
         if (!textfieldIN.getText().equals("")) {
-            //System.out.println("in addfile");
             System.out.println(textfieldIN.getText());
             String[] s = textfieldIN.getText().split("/");
             String name = s[s.length - 1];
@@ -101,13 +103,8 @@ public class FXMLDocumentController implements Initializable {
             update();
             msgLabel.setText("");
         } else {
-            msgLabel.setText("You need to write path first");
+            msgLabel.setText("You need to write path \nfirst");
         }
-    }
-
-    @FXML
-    public void exitLearning(ActionEvent event) {
-        learningGUI.setVisible(false);
     }
 
     @FXML
@@ -174,6 +171,11 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    @FXML
+    public void goToLibrary() {
+        AnchorLibrary.setVisible(true);
+    }
+
     public void createFile() throws IOException {
         files.add(new MyFile("data", "data/"));
         update();
@@ -211,9 +213,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void addWord() {
         try {
-            boolean a =/* (addWordComboBox1.getValue() != null) &&*/ (!AddWordTextField.getText().equals("")) && (!AddTranslTextField.getText().equals(""));
+            boolean a = (!AddWordTextField.getText().equals("")) && (!AddTranslTextField.getText().equals(""));
             if (a) {
-                System.out.println("in add word");
                 files.get(getFileIndex(changeComboBox1.getValue())).addNewWord(AddWordTextField.getText(), AddTranslTextField.getText());
                 refreshChange();
             } else {
@@ -250,7 +251,17 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    public void exitChange(ActionEvent event) {
+    public void exitLearning() {
+        learningGUI.setVisible(false);
+    }
+
+    @FXML
+    public void exitLibrary() {
+        AnchorLibrary.setVisible(false);
+    }
+
+    @FXML
+    public void exitChange() {
         AnchorChangeFile.setVisible(false);
         AddWordTextField.setText("");
         AddTranslTextField.setText("");
@@ -264,6 +275,7 @@ public class FXMLDocumentController implements Initializable {
         changeComboBox1.setItems(comboboxesValues);
         learningGUI.setVisible(false);
         AnchorChangeFile.setVisible(false);
+        AnchorLibrary.setVisible(false);
         files = new ArrayList<MyFile>();
         update();
         try {

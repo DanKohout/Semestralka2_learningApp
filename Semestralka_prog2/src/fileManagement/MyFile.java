@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author daniel kohout
  */
-public class MyFile {
+public class MyFile implements Files {
 
     private File newFile;
     private String name;
@@ -30,7 +30,9 @@ public class MyFile {
     /**
      * creates file in default folder
      *
-     * @param name
+     * @param name - name of the file (without .txt)
+     * @param folder - example: "data/"
+     * @throws java.io.IOException
      */
     /* public MyFile(String name) {
 
@@ -43,6 +45,10 @@ public class MyFile {
         //assignToExistingFile(name, folder);
     }
 
+    /**
+     * @return name of the file
+     */
+    @Override
     public String getName() {
         return name;
     }
@@ -125,6 +131,7 @@ public class MyFile {
         }
     }
 
+    @Override
     public void overwriteFile() throws FileNotFoundException, IOException {
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(newFile)))) {
             //new PrintWriter(new OutputStreamWriter () pouzit, kdyz chci kodovani
@@ -136,14 +143,11 @@ public class MyFile {
         }
     }
 
-    /* 
-    public boolean checkFileExists() {
-        return false;
-    }*/
     /**
      * @param a word in first language
      * @param b word in second language
      */
+    @Override
     public void addNewWord(String a, String b) {
         Word word = new Word(a, b);
         words.add(word);
@@ -154,6 +158,7 @@ public class MyFile {
      * @param index
      * @return
      */
+    @Override
     public Word getWord(int index) {
         return words.get(index);
     }
@@ -161,6 +166,7 @@ public class MyFile {
     /**
      * @param index
      */
+    @Override
     public void removeWord(int index) {
         words.remove(index);
     }
@@ -168,6 +174,7 @@ public class MyFile {
     /**
      * @param s
      */
+    @Override
     public void removeWord(String s) {
         int index = -1;
         for (Word w : words) {
@@ -187,19 +194,18 @@ public class MyFile {
      * @param a
      * @param b
      */
+    @Override
     public void changeWord(int index, String a, String b) {
         words.remove(index);
         words.add(new Word(a, b));
     }
 
+    @Override
     public int getNumOfWords() {
         return words.size();
     }
 
-    public void writeInFile() {
-
-    }
-
+    @Override
     public String getAllWords() {
         StringBuilder sb = new StringBuilder();
         for (Word w : words) {
@@ -209,6 +215,7 @@ public class MyFile {
         return sb.toString();
     }
 
+    @Override
     public boolean knowAllWords() {
         for (Word w : words) {
             if (!w.getKnow()) {
@@ -218,19 +225,4 @@ public class MyFile {
         return true;
     }
 
-
-    /*
-public void saveToFile(File results) throws IOException{
-        try(PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(results)))){
-            //new PrintWriter(new OutputStreamWriter () pouzit, kdyz chci kodovani
-            sortByRunTime();
-            int n = 1;
-            for (Runner runner : runners) {
-               pw.print(n + ". ");
-               pw.println(runner.toString());
-               n++;
-            }
-        }
-    }
-     */
 }
