@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="672.0" prefWidth="893.0" style="-fx-background-color: #090505;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semestralka_prog2.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="672.0" prefWidth="893.0" style="-fx-background-color: #090505;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.FXMLDocumentController">
     <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -34,7 +34,7 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <AnchorPane layoutX="50.0" layoutY="109.0" prefHeight="346.0" prefWidth="363.0">
+            <AnchorPane layoutX="49.0" layoutY="118.0" prefHeight="346.0" prefWidth="363.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#05b07713" height="342.0" layoutX="2.0" stroke="#05b373" strokeType="OUTSIDE" strokeWidth="2.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="359.0" />
                   <TextField fx:id="textfieldIN" layoutX="34.0" layoutY="82.0" prefHeight="25.0" prefWidth="295.0" style="-fx-background-color: #999;">
@@ -65,7 +65,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="490.0" layoutY="97.0" prefHeight="206.0" prefWidth="308.0">
+            <AnchorPane layoutX="523.0" layoutY="98.0" prefHeight="206.0" prefWidth="308.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#05b29e16" height="206.0" stroke="#05b29c" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="309.0" />
                   <Label layoutX="34.0" layoutY="29.0" minHeight="16" minWidth="69" text="vyberte soubor, ze ktereho &#10;se chcete ucit" textFill="#ababab">
@@ -81,22 +81,22 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="484.0" layoutY="333.0" prefHeight="80.0" prefWidth="328.0">
+            <AnchorPane layoutX="469.0" layoutY="317.0" prefHeight="69.0" prefWidth="321.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#05b29e16" height="80.0" stroke="#05b29c" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="328.0" />
-                  <Label layoutX="35.0" layoutY="29.0" minHeight="16" minWidth="69" text="přejít do knihoven" textFill="#ababab">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#05b29e16" height="71.0" stroke="#05b29c" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="321.0" />
+                  <Label layoutX="31.0" layoutY="25.0" minHeight="16" minWidth="69" text="přejít do knihoven" textFill="#ababab">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Button layoutX="181.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToLibrary" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #333; -fx-background-radius: 17px;" text="click here" textFill="#0adabe">
+                  <Button layoutX="177.0" layoutY="19.0" mnemonicParsing="false" onAction="#goToLibrary" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #333; -fx-background-radius: 17px;" text="click here" textFill="#0adabe">
                      <font>
                         <Font name="Arial Black" size="15.0" />
                      </font>
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="49.0" layoutY="478.0" prefHeight="126.0" prefWidth="363.0">
+            <AnchorPane layoutX="49.0" layoutY="472.0" prefHeight="126.0" prefWidth="363.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#05b27011" height="152.0" layoutY="1.0" stroke="#05b373" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="363.0" />
                   <Label layoutX="33.0" layoutY="21.0" text="messages for user" textFill="#ababab">
@@ -111,7 +111,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="470.0" layoutY="442.0" prefHeight="161.0" prefWidth="363.0">
+            <AnchorPane layoutX="469.0" layoutY="399.0" prefHeight="161.0" prefWidth="363.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#05b27011" height="162.0" layoutY="1.0" stroke="#05b373" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="363.0" />
                   <Button layoutX="242.0" layoutY="106.0" mnemonicParsing="false" onAction="#changeFile" prefHeight="33.0" prefWidth="91.0" style="-fx-background-color: #252525; -fx-background-radius: 17px;" text="Change" textFill="#04d384">
@@ -137,6 +137,21 @@
                   <Font name="System Bold" size="49.0" />
                </font>
             </Label>
+            <AnchorPane layoutX="579.0" layoutY="573.0" prefHeight="62.0" prefWidth="253.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#05b29e16" height="62.0" layoutX="-1.0" layoutY="-1.0" stroke="#05b29c" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="253.0" />
+                  <Label layoutX="25.0" layoutY="19.0" minHeight="16" minWidth="69" text="Historie" textFill="#ababab">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="101.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToHistory" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #333; -fx-background-radius: 17px;" text="click here" textFill="#0adabe">
+                     <font>
+                        <Font name="Arial Black" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="AnchorChangeFile" prefHeight="672.0" prefWidth="893.0" visible="false">
@@ -244,9 +259,14 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorLibrary" prefHeight="672.0" prefWidth="893.0">
+      <AnchorPane fx:id="AnchorLibrary" prefHeight="672.0" prefWidth="893.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c1a11" height="672.0" stroke="BLACK" strokeType="INSIDE" width="893.0" />
+            <Label layoutX="381.0" layoutY="24.0" prefHeight="24.0" prefWidth="188.0" text="Knihovny" textFill="#ababab">
+               <font>
+                  <Font name="Arial Black" size="33.0" />
+               </font>
+            </Label>
             <AnchorPane layoutX="76.0" layoutY="92.0" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#05b29e16" height="408.0" stroke="#05b29c" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="337.0" />
@@ -273,12 +293,31 @@
                   </Button>
                </children>
             </AnchorPane>
-            <Label layoutX="381.0" layoutY="24.0" prefHeight="24.0" prefWidth="188.0" text="Knihovny" textFill="#ababab">
+            <Button layoutX="776.0" layoutY="604.0" mnemonicParsing="false" onAction="#exitLibrary" prefHeight="39.0" prefWidth="80.0" style="-fx-background-color: #333; -fx-background-radius: 20px;" text="Exit" textFill="#0adabe">
                <font>
-                  <Font name="Arial Black" size="33.0" />
+                  <Font name="Arial Black" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="AnchorHistory" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#061211" height="672.0" stroke="BLACK" strokeType="INSIDE" width="893.0" />
+            <Label layoutX="371.0" layoutY="40.0" text="Historie" textFill="#a8a8a8">
+               <font>
+                  <Font name="Arial Black" size="35.0" />
                </font>
             </Label>
-            <Button layoutX="776.0" layoutY="604.0" mnemonicParsing="false" onAction="#exitLibrary" prefHeight="39.0" prefWidth="80.0" style="-fx-background-color: #333; -fx-background-radius: 20px;" text="Exit" textFill="#0adabe">
+            <Button layoutX="793.0" layoutY="614.0" mnemonicParsing="false" onAction="#exitHistory" prefHeight="39.0" prefWidth="80.0" style="-fx-background-color: #333; -fx-background-radius: 20px;" text="Exit" textFill="#0adabe">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font>
+            </Button>
+            <TextArea fx:id="historyTextArea" editable="false" layoutX="149.0" layoutY="125.0" prefHeight="465.0" prefWidth="596.0">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font></TextArea>
+            <Button layoutX="37.0" layoutY="608.0" mnemonicParsing="false" onAction="#clearHistory" prefHeight="39.0" prefWidth="153.0" style="-fx-background-color: #333; -fx-background-radius: 20px;" text="Clear history" textFill="#0adabe">
                <font>
                   <Font name="Arial Black" size="18.0" />
                </font>
@@ -299,7 +338,7 @@
                   <Font name="System Bold" size="23.0" />
                </font>
             </Button>
-            <Button layoutX="745.0" layoutY="571.0" mnemonicParsing="false" onAction="#exitLearning" prefHeight="50.0" prefWidth="91.0" style="-fx-background-color: #333; -fx-background-radius: 30;" text="Exit" textFill="#00ffe1">
+            <Button fx:id="exitLearningBtn" layoutX="745.0" layoutY="571.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="91.0" style="-fx-background-color: #333; -fx-background-radius: 30;" text="Exit" textFill="#00ffe1">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>

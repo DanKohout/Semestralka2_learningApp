@@ -225,4 +225,14 @@ public class MyFile implements Files {
         return true;
     }
 
+    public int nLearnedWords() {
+        int i = 0;
+        for (Word w : words) {
+            if (w.getKnow()) {
+                i++;
+            }
+        }
+        return i;
+    }
+
 }

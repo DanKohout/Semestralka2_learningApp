@@ -16,17 +16,95 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * Class is for reading and saving from binary files. In binary files is kept
- * information about when (date),from where(name of file) and how many words did
- * somebody learned.
+ * This static class is for reading and saving from binary files. In binary
+ * files is kept information about when (date),from where(name of file) and how
+ * many words did somebody learned.
  *
  * @author daniel kohout
  */
 public class BinaryFilesManager {
 
-    private ArrayList<LocalDate> when;
-    private ArrayList<String> fromWhere;
-    private ArrayList<Integer> numOfWords;
+    private static ArrayList<LocalDate> when;
+    private static ArrayList<String> fromWhere;
+    private static ArrayList<Integer> numOfWords;
+    private static int helpingNumber = 0;
+    private static File f = new File("data/data2.dat");
+
+    /**
+     * @param l - LocalDate - date of the record
+     * @param fileName
+     * @param numOfWordsLearned
+     * @return true if the record was added
+     */
+    public static boolean addRecord(LocalDate l, String fileName, int numOfWordsLearned) {
+        try {
+            if (f.exists()) {
+                readBinaryResults(f);
+                when.add(l);
+                fromWhere.add(fileName);
+                numOfWords.add(numOfWordsLearned);
+                saveToBinary(f);
+                return true;
+            } else {
+                f.createNewFile();
+                System.out.println("file data/data2.dat vytvořen");
+                addRecord(l, fileName, numOfWordsLearned);
+                return true;
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("file not found exception!!!!!!!!!!\n" + e.getMessage());
+            return false;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+    }
+
+    /**
+     *
+     */
+    public static void addRecord(int year, int month, int day, String fileName, int numOfWordsLearned) {
+        LocalDate l = LocalDate.parse(formatDate(year, month, day));
+        addRecord(l, fileName, numOfWordsLearned);
+    }
+
+    public static void startup() {
+        when = new ArrayList<>();
+        fromWhere = new ArrayList<String>();
+        numOfWords = new ArrayList<Integer>();
+        try {
+            if (f.exists()) {
+                readBinaryResults(f);
+            } else {
+                f.createNewFile();
+                System.out.println("file data/data2.dat vytvořen");
+                readBinaryResults(f);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("file not found exception!!!!!!!!!!\n" + e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    /**
+     * clearing/removing history/all records
+     *
+     * @return true if there was no problem in clearing history
+     */
+    public static boolean removeAllRecords() {
+        try (DataOutputStream out = new DataOutputStream(new FileOutputStream(f, false))) {
+            //f.delete();
+            //f.createNewFile();
+            readBinaryResults(f);
+            return true;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 
     /**
      * writing inside the binary files all the information, for the LocalDate we
@@ -35,10 +113,10 @@ public class BinaryFilesManager {
      * @param results
      * @throws java.io.FileNotFoundException
      */
-    public void saveToBinary(File results) throws FileNotFoundException, IOException {
-        try (DataOutputStream out = new DataOutputStream(new FileOutputStream(results, true))) {
-
-            for (int i = 0; i < when.size(); i++) {
+    private static void saveToBinary(File results) throws FileNotFoundException, IOException {
+        FileOutputStream outf;
+        try (DataOutputStream out = new DataOutputStream(outf = new FileOutputStream(results, true))) {
+            for (int i = helpingNumber; i < when.size(); i++) {
 
                 int yyyy = when.get(i).getYear();
                 int mm = when.get(i).getMonthValue();
@@ -53,28 +131,21 @@ public class BinaryFilesManager {
                 out.writeUTF(name);
                 out.writeInt(number);
             }
-            //sortByRunTime();
-            /*out.writeInt(Files.size());
-            for (Files runner : Files) {
-                out.writeUTF(runner.getName());
-                out.writeInt(runner.getSurName().length());
-                for (int i = 0; i < runner.getSurName().length(); i++) {
-                    out.writeChar(runner.getSurName().charAt(i));
-                }
-                out.writeInt(runner.getRunTime());
-            }*/
         }
     }
 
     /**
      *
      * @param results
-     * @return
      * @throws java.io.FileNotFoundException
      */
-    public String readBinaryResults(File results) throws FileNotFoundException, IOException {
-        //StringBuilder sb = new StringBuilder();
+    private static void readBinaryResults(File results) throws FileNotFoundException, IOException {
         try (DataInputStream in = new DataInputStream(new FileInputStream(results))) {
+            if (!when.isEmpty()) {
+                when.clear();
+                fromWhere.clear();
+                numOfWords.clear();
+            }
             boolean end = false;
             int i = 0;
             while (!end) {
@@ -85,57 +156,73 @@ public class BinaryFilesManager {
                     String name = in.readUTF();
                     int number = in.readInt();
 
-                    if (mm < 10 && dd < 10) {
-                        when.add(LocalDate.parse(yyyy + "-0" + mm + "-0" + dd));
-                    } else if (mm < 10) {
-                        when.add(LocalDate.parse(yyyy + "-0" + mm + "-" + dd));
-                    } else if (dd < 10) {
-                        when.add(LocalDate.parse(yyyy + "-" + mm + "-0" + dd));
-                    } else {
-                        when.add(LocalDate.parse(yyyy + "-" + mm + "-" + dd));
-                    }
+                    when.add(LocalDate.parse(formatDate(yyyy, mm, dd)));
                     fromWhere.add(name);
                     numOfWords.add(number);
                     i++;
+                    helpingNumber = i;
                 } catch (EOFException e) {
                     end = true;
                 }
+
             }
-            /* boolean end = false;
-            int nRunners, nLetters, time = 0;
-            int rank = 1;
-            String name = "", surname = "";
-            while (!end) {
-                try {
-                    nRunners = in.readInt();
-                    for (int i = 0; i < nRunners; i++) {
-                        name = in.readUTF();
-                        nLetters = in.readInt();
-                        surname = "";
-                        for (int j = 0; j < nLetters; j++) {
-                            surname += in.readChar();
-                        }
-                        time = in.readInt();
-                        sb.append(String.format("%2d. %10s%10s%10s%n", rank, name, surname, TimeTools.secondsToStringTime(time)));
-                        rank++;
-                    }
-                    rank = 1;
-                    sb.append("\n");
-                } catch (EOFException e) {
-                    end = true;
-                }
-            }*/
         }
-        return "";//sb.toString();
     }
 
-    @Override
-    public String toString() {
+    private static String formatDate(int yyyy, int mm, int dd) {
+        if (mm < 10 && dd < 10) {
+            return (yyyy + "-0" + mm + "-0" + dd);
+        } else if (mm < 10) {
+            return (yyyy + "-0" + mm + "-" + dd);
+        } else if (dd < 10) {
+            return (yyyy + "-" + mm + "-0" + dd);
+        } else {
+            return (yyyy + "-" + mm + "-" + dd);
+        }
+    }
+
+    //@Override
+    public static String tooString() {
         StringBuilder sb = new StringBuilder();
+        //System.out.println(when.size());
         for (int i = 0; i < when.size(); i++) {
-            sb.append(String.format(" %s  %s  %d", when.get(i).toString(), fromWhere.get(i), numOfWords.get(i)));
+            sb.append(String.format("%s  %s  %d", when.get(i).toString(), fromWhere.get(i), numOfWords.get(i)));
             sb.append("\n");
         }
         return sb.toString();
     }
+
+    /*public static void main(String[] args) throws IOException {
+        File f = new File("data/data2.dat");
+        when = new ArrayList<>();
+        fromWhere = new ArrayList<String>();
+        numOfWords = new ArrayList<Integer>();
+
+        try {
+            if (f.exists()) {
+                System.out.println("exists");
+                //f.delete();
+                //f.createNewFile();
+                System.out.println("before anything " + when.size());
+                readBinaryResults(f);//----------------------------------------------------------read
+                System.out.println(tooString());
+                System.out.println("after first read " + when.size());
+                when.add(LocalDate.parse(2015 + "-0" + 1 + "-0" + 2));
+                fromWhere.add("file1");
+                numOfWords.add(5);
+                System.out.println("after my added " + when.size());
+                saveToBinary(f);//---------------------------------------------------------------save
+                System.out.println("after save " + when.size());
+                readBinaryResults(f);//----------------------------------------------------------read
+                System.out.println("after second read " + when.size());
+                System.out.println(tooString());
+
+            } else {
+                System.out.println("file data/data2.dat neexistuje");
+            }
+
+        } catch (Exception e) {
+            e.toString();
+        }
+    }*/
 }

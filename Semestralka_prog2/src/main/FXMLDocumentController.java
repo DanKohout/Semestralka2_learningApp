@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+//import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,7 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
+//import javafx.scene.layout.Background;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -58,6 +58,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private AnchorPane AnchorLibrary;
 
+//---------------history------------------
+    @FXML
+    private AnchorPane AnchorHistory;
+    @FXML
+    private TextArea historyTextArea;
 //-------------change file----------------
     @FXML
     private AnchorPane AnchorChangeFile;
@@ -80,6 +85,8 @@ public class FXMLDocumentController implements Initializable {
     private Button nextBtn;
     @FXML
     private Button knowAlreadyButton;
+    @FXML
+    private Button exitLearningBtn;
     @FXML
     private AnchorPane learningGUI;
     @FXML
@@ -160,7 +167,7 @@ public class FXMLDocumentController implements Initializable {
     public void start() {
         try {
             try {
-                GuiForLearning learn = new GuiForLearning(files.get(getFileIndex(chooseFileComboBox.getValue())), learningGUI, vocabLabel, card, nextBtn, knowAlreadyButton);
+                GuiForLearning learn = new GuiForLearning(files.get(getFileIndex(chooseFileComboBox.getValue())), learningGUI, vocabLabel, card, nextBtn, knowAlreadyButton, exitLearningBtn);
                 learn.start();
                 msgLabel.setText("");
             } catch (NullPointerException e) {
@@ -174,6 +181,18 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void goToLibrary() {
         AnchorLibrary.setVisible(true);
+    }
+
+    @FXML
+    public void goToHistory() {
+        AnchorHistory.setVisible(true);
+        historyTextArea.setText(BinaryFilesManager.tooString());
+    }
+
+    @FXML
+    public void clearHistory() {
+        BinaryFilesManager.removeAllRecords();
+        historyTextArea.setText(BinaryFilesManager.tooString());
     }
 
     public void createFile() throws IOException {
@@ -226,7 +245,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    void removeWord() {
+    public void removeWord() {
         try {
             if ((!RemoveWordTextField.getText().equals(""))) {
                 System.out.println("in remove word");
@@ -251,13 +270,13 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    public void exitLearning() {
-        learningGUI.setVisible(false);
+    public void exitLibrary() {
+        AnchorLibrary.setVisible(false);
     }
 
     @FXML
-    public void exitLibrary() {
-        AnchorLibrary.setVisible(false);
+    public void exitHistory() {
+        AnchorHistory.setVisible(false);
     }
 
     @FXML
@@ -277,6 +296,7 @@ public class FXMLDocumentController implements Initializable {
         AnchorChangeFile.setVisible(false);
         AnchorLibrary.setVisible(false);
         files = new ArrayList<MyFile>();
+        BinaryFilesManager.startup();
         update();
         try {
             createFile();

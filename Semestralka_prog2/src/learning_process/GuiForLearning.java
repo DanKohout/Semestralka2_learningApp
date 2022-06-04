@@ -5,6 +5,7 @@
 package learning_process;
 
 import fileManagement.*;
+import java.time.LocalDate;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -22,6 +23,7 @@ public class GuiForLearning {
     private Rectangle card;
     private Button nextBtn;
     private Button knowAlreadyB;
+    private Button exit;
     private boolean transl = false;
     private int index = 0;
 
@@ -34,13 +36,14 @@ public class GuiForLearning {
      * @param card - rectangle which is "card" on which are the words projected
      * @param nextBtn - for going to next word
      */
-    public GuiForLearning(MyFile file, AnchorPane learningGUI, Label vocabLabel, Rectangle card, Button nextBtn, Button knowAlreadyB) {
+    public GuiForLearning(MyFile file, AnchorPane learningGUI, Label vocabLabel, Rectangle card, Button nextBtn, Button knowAlreadyB, Button exit) {
         this.file = file;
         this.learningGUI = learningGUI;
         this.vocabLabel = vocabLabel;
         this.card = card;
         this.nextBtn = nextBtn;
         this.knowAlreadyB = knowAlreadyB;
+        this.exit = exit;
     }
 
     /**
@@ -52,6 +55,7 @@ public class GuiForLearning {
         setLabel();
         getNext();
         setKnowAlreadyB();
+        setExit();
     }
 
     /**
@@ -112,6 +116,13 @@ public class GuiForLearning {
             } else {
                 vocabLabel.setText("no words\nfound");
             }
+        });
+    }
+
+    private void setExit() {
+        exit.setOnAction(v -> {
+            learningGUI.setVisible(false);
+            BinaryFilesManager.addRecord(LocalDate.now(), file.getName(), file.nLearnedWords());
         });
     }
 
