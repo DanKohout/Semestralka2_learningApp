@@ -17,7 +17,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class GuiForLearning {
 
-    private MyFile file;
+    private Files file;
     private AnchorPane learningGUI;
     private Label vocabLabel;
     private Rectangle card;
@@ -36,7 +36,7 @@ public class GuiForLearning {
      * @param card - rectangle which is "card" on which are the words projected
      * @param nextBtn - for going to next word
      */
-    public GuiForLearning(MyFile file, AnchorPane learningGUI, Label vocabLabel, Rectangle card, Button nextBtn, Button knowAlreadyB, Button exit) {
+    public GuiForLearning(Files file, AnchorPane learningGUI, Label vocabLabel, Rectangle card, Button nextBtn, Button knowAlreadyB, Button exit) {
         this.file = file;
         this.learningGUI = learningGUI;
         this.vocabLabel = vocabLabel;
@@ -68,6 +68,9 @@ public class GuiForLearning {
 
     }
 
+    /**
+     * changes to the next word in order
+     */
     private void next() {
         if (file.getNumOfWords() != 0 && !file.knowAllWords()) {
             index++;
@@ -91,7 +94,11 @@ public class GuiForLearning {
      */
     private void setLabel() {
         if (file.getNumOfWords() != 0) {
-            vocabLabel.setText(file.getWord(index).getWord());
+            if (file.getWord(index).getKnow()) {
+                next();
+            } else {
+                vocabLabel.setText(file.getWord(index).getWord());
+            }
         }
         transl = false;
         card.setOnMouseClicked(v -> {

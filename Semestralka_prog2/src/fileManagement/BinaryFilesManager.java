@@ -96,8 +96,6 @@ public class BinaryFilesManager {
      */
     public static boolean removeAllRecords() {
         try (DataOutputStream out = new DataOutputStream(new FileOutputStream(f, false))) {
-            //f.delete();
-            //f.createNewFile();
             readBinaryResults(f);
             return true;
         } catch (IOException e) {
@@ -181,48 +179,22 @@ public class BinaryFilesManager {
         }
     }
 
-    //@Override
     public static String tooString() {
         StringBuilder sb = new StringBuilder();
-        //System.out.println(when.size());
         for (int i = 0; i < when.size(); i++) {
             sb.append(String.format("%s  %s  %d", when.get(i).toString(), fromWhere.get(i), numOfWords.get(i)));
             sb.append("\n");
         }
         return sb.toString();
     }
-
-    /*public static void main(String[] args) throws IOException {
-        File f = new File("data/data2.dat");
-        when = new ArrayList<>();
-        fromWhere = new ArrayList<String>();
-        numOfWords = new ArrayList<Integer>();
-
-        try {
-            if (f.exists()) {
-                System.out.println("exists");
-                //f.delete();
-                //f.createNewFile();
-                System.out.println("before anything " + when.size());
-                readBinaryResults(f);//----------------------------------------------------------read
-                System.out.println(tooString());
-                System.out.println("after first read " + when.size());
-                when.add(LocalDate.parse(2015 + "-0" + 1 + "-0" + 2));
-                fromWhere.add("file1");
-                numOfWords.add(5);
-                System.out.println("after my added " + when.size());
-                saveToBinary(f);//---------------------------------------------------------------save
-                System.out.println("after save " + when.size());
-                readBinaryResults(f);//----------------------------------------------------------read
-                System.out.println("after second read " + when.size());
-                System.out.println(tooString());
-
-            } else {
-                System.out.println("file data/data2.dat neexistuje");
-            }
-
-        } catch (Exception e) {
-            e.toString();
-        }
-    }*/
+/*
+    public static void main(String[] args) throws IOException {
+        LocalDate l = LocalDate.parse("2020-02-01");
+        readBinaryResults(f);
+        when.add(l);
+        fromWhere.add("filename");
+        numOfWords.add(5);
+        saveToBinary(f);
+    }
+*/
 }

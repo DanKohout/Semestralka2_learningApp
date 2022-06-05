@@ -19,6 +19,19 @@ public interface Files {
     public String getName();
 
     /**
+     * creates file if file doesn't exist, if file exists it assignes File to it
+     *
+     * @param name - is name of the file without .txt, example "file_01"
+     * @param folder - is folder of the file, example "data/"
+     */
+    public void createFile(String name, String folder);
+
+    /**
+     * method reads txt file
+     */
+    public void readFile() throws FileNotFoundException, IOException;
+
+    /**
      * method for saving changes into file, first it deletes content and then
      * writes words from "words" (Arraylist< Word>) which should every
      * implementation have
@@ -29,47 +42,23 @@ public interface Files {
     public void overwriteFile() throws FileNotFoundException, IOException;
 
     /**
-     * adding new word to ArrayList "words"
-     *
-     * @param a word in first language
-     * @param b word in second language
-     */
-    public void addNewWord(String a, String b);
-
-    /**
-     * @return Word of desired index from ArrayList "words"
-     */
-    public Word getWord(int index);
-
-    /**
-     * removes word by its index
-     */
-    public void removeWord(int index);
-
-    /**
-     * removes word by its "name"
-     */
-    public void removeWord(String s);
-
-    /**
-     * overwrites Word in ArrayList "words" of index "index"
-     */
-    public void changeWord(int index, String a, String b);
-
-    /**
-     * @return number of words in ArrayList "words"
+     * @return size of the array words
      */
     public int getNumOfWords();
 
     /**
-     * @return formatted string of all words in ArrayList "words"
+     * @param index
+     * @return
      */
-    public String getAllWords();
+    public Word getWord(int index);
 
     /**
-     * @return true if all words in ArrayList "words" have property knowAlready
-     * as true
+     * @return true if person knows all words in a file
      */
     public boolean knowAllWords();
 
+    /**
+     * @return how many words does person know from the file
+     */
+    public int nLearnedWords();
 }

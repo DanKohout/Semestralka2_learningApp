@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
-//import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -57,6 +56,8 @@ public class FXMLDocumentController implements Initializable {
 //---------------library------------------
     @FXML
     private AnchorPane AnchorLibrary;
+    @FXML
+    private ComboBox<String> chooseLibraryComboBox;
 
 //---------------history------------------
     @FXML
@@ -94,10 +95,12 @@ public class FXMLDocumentController implements Initializable {
 
     BufferedWriter reader1;
     ArrayList<MyFile> files;
+    ArrayList<Library> libraries;
     ObservableList<String> comboboxesValues;
+    ObservableList<String> comboboxesValuesLibraries;
 
     @FXML
-    public void addFile(ActionEvent event) throws IOException {
+    public void addFile() throws IOException {
         if (!textfieldIN.getText().equals("")) {
             System.out.println(textfieldIN.getText());
             String[] s = textfieldIN.getText().split("/");
@@ -114,8 +117,12 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    /**
+     * method for removing file from memory (not physically removing file, but
+     * removing it from ArrayList files)
+     */
     @FXML
-    public void removeFile(ActionEvent event) {
+    public void removeFile() {
         boolean removed = false;
         String name = deleteFileComboBox.getValue();
         Iterator itr = files.iterator();
@@ -135,10 +142,17 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    /**
+     * method for refreshing comboboxes
+     */
     private void update() {
         comboboxesValues.clear();
+        comboboxesValuesLibraries.clear();
         for (int i = 0; i < files.size(); i++) {
             comboboxesValues.add(files.get(i).getName());
+        }
+        for (int i = 0; i < libraries.size(); i++) {
+            comboboxesValuesLibraries.add(libraries.get(i).getName());
         }
     }
 
@@ -154,6 +168,20 @@ public class FXMLDocumentController implements Initializable {
         for (MyFile file : files) {
             if (name.equals(file.getName())) {
                 index = files.indexOf(file);
+                break;
+            }
+        }
+        if (index == -1) {
+            throw new FileNotFoundException("file not found");
+        }
+        return index;
+    }
+
+    private int getLibraryIndex(String name) throws FileNotFoundException {
+        int index = -1;
+        for (Library lib : libraries) {
+            if (name.equals(lib.getName())) {
+                index = libraries.indexOf(lib);
                 break;
             }
         }
@@ -181,6 +209,21 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void goToLibrary() {
         AnchorLibrary.setVisible(true);
+    }
+
+    @FXML
+    void startLibrary(ActionEvent event) {
+        try {
+            try {
+                GuiForLearning learn = new GuiForLearning(libraries.get(getLibraryIndex(chooseLibraryComboBox.getValue())), learningGUI, vocabLabel, card, nextBtn, knowAlreadyButton, exitLearningBtn);
+                learn.start();
+                msgLabel.setText("");
+            } catch (NullPointerException e) {
+                msgLabel.setText("File not chosen.");
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
@@ -289,13 +332,20 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         comboboxesValues = FXCollections.observableArrayList();
+        comboboxesValuesLibraries = FXCollections.observableArrayList();
         chooseFileComboBox.setItems(comboboxesValues);
         deleteFileComboBox.setItems(comboboxesValues);
         changeComboBox1.setItems(comboboxesValues);
+        chooseLibraryComboBox.setItems(comboboxesValuesLibraries);
         learningGUI.setVisible(false);
         AnchorChangeFile.setVisible(false);
         AnchorLibrary.setVisible(false);
         files = new ArrayList<MyFile>();
+        libraries = new ArrayList<Library>();
+        Libraries.DoLibraries();
+        libraries.add(Libraries.getLibA());
+        libraries.add(Libraries.getLibB());
+        libraries.add(Libraries.getLibC());
         BinaryFilesManager.startup();
         update();
         try {

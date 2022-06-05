@@ -5,7 +5,7 @@
 package fileManagement;
 
 /**
- * container
+ * container class
  *
  * @author daniel kohout
  */
@@ -14,14 +14,12 @@ public class Word implements Comparable<Word> {
     final private String word;
     final private String translation;
     private boolean knowAlready = false;
-//obtiznost slovicka atd.
-//ulozit si kde sem skoncil
-//urovne anglictiny slovicka pro danou uroven
+//ulozit si kde sem skoncil-nestiham
+//urovne anglictiny slovicka pro danou uroven-bude
 
     public Word(String word, String translation) {
         this.word = word;
         this.translation = translation;
-        //knowAlready = false;
     }
 
     public String getWord() {
@@ -34,12 +32,9 @@ public class Word implements Comparable<Word> {
 
     public void know() {
         this.knowAlready = true;
-        //System.out.println("in know" + knowAlready);
-        //System.out.println(getKnow());
     }
 
     public boolean getKnow() {
-        //System.out.println("know = " + knowAlready);
         return knowAlready;
     }
 
@@ -50,7 +45,7 @@ public class Word implements Comparable<Word> {
 
     @Override
     public String toString() {
-        return String.format("%s = %s ", getWord(), getTransl());// getWord() + " = " + getTransl();
+        return String.format("%s = %s ", getWord(), getTransl());
     }
 
 }

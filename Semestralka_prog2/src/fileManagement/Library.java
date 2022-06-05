@@ -5,36 +5,25 @@
 package fileManagement;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
- * class made for creating and managing file that is read from and etc.
  *
  * @author daniel kohout
  */
-public class MyFile implements Files {
+public class Library implements Files {
 
     private File newFile;
     private String name;
     private String folder;
 
-    private ArrayList<Word> words;//vocabulary
+    private ArrayList<Word> words;
 
-    /**
-     * constructor for MyFile
-     *
-     * @param name - name of the file (without .txt)
-     * @param folder - example: "data/"
-     * @throws java.io.IOException
-     */
-    public MyFile(String name, String folder) throws IOException {
+    public Library(String name, String folder) {
         words = new ArrayList<>();
         this.name = name;
         this.folder = folder;
@@ -52,8 +41,8 @@ public class MyFile implements Files {
     /**
      * creates file if file doesn't exist, if file exists it assignes File to it
      *
-     * @param folder
-     * @param name
+     * @param name - is name of the file without .txt, example "file_01"
+     * @param folder - is folder of the file, example "data/"
      */
     @Override
     public void createFile(String name, String folder) {
@@ -84,13 +73,12 @@ public class MyFile implements Files {
         String a = name + ".txt";
         newFile = new File(folder + a);
         if (newFile.exists()) {
-            System.out.println("file exists (success)");
             readFile();
         }
     }
 
     /**
-     * reads txt file and adds all words to Arraylist words
+     * method reads txt file
      */
     public void readFile() throws FileNotFoundException, IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(newFile))) {
@@ -109,66 +97,10 @@ public class MyFile implements Files {
     }
 
     /**
+     * method for saving changes into file, does nothing for the library
      */
     @Override
-    public void overwriteFile() throws FileNotFoundException, IOException {
-        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(newFile)))) {
-            for (Word w : words) {
-                pw.println(w.getWord() + "=" + w.getTransl());
-            }
-        }
-    }
-
-    /**
-     * @param a word in first language
-     * @param b word in second language
-     */
-    public void addNewWord(String a, String b) {
-        Word word = new Word(a, b);
-        words.add(word);
-    }
-
-    /**
-     * @param index
-     * @return
-     */
-    @Override
-    public Word getWord(int index) {
-        return words.get(index);
-    }
-
-    /**
-     * @param index
-     */
-    public void removeWord(int index) {
-        words.remove(index);
-    }
-
-    /**
-     * @param s
-     */
-    public void removeWord(String s) {
-        int index = -1;
-        for (Word w : words) {
-            if (s.equals(w.getWord())) {
-                index = words.indexOf(w);
-                break;
-            }
-        }
-        if (index == -1) {
-            System.out.println("word not found");
-        }
-        words.remove(index);
-    }
-
-    /**
-     * @param index
-     * @param a
-     * @param b
-     */
-    public void changeWord(int index, String a, String b) {
-        words.remove(index);
-        words.add(new Word(a, b));
+    public void overwriteFile() {
     }
 
     /**
@@ -180,15 +112,12 @@ public class MyFile implements Files {
     }
 
     /**
-     * @return String of formatted all words, similar to method toString
+     * @param index
+     * @return
      */
-    public String getAllWords() {
-        StringBuilder sb = new StringBuilder();
-        for (Word w : words) {
-            sb.append(w);
-            sb.append("\n");
-        }
-        return sb.toString();
+    @Override
+    public Word getWord(int index) {
+        return words.get(index);
     }
 
     /**
@@ -218,4 +147,13 @@ public class MyFile implements Files {
         return i;
     }
 
+    /**
+     * @param a word in first language
+     * @param b word in second language
+     */
+    public void addNewWord(String a, String b) {
+        Word word = new Word(a, b);
+        words.add(word);
+
+    }
 }
