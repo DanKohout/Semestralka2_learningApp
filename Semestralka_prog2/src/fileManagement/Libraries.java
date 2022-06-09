@@ -51,6 +51,7 @@ public class Libraries {
             libA.addNewWord("před", "before");
             libA.addNewWord("obor", "field");
             libA.addNewWord("hledat", "look for");
+            libA.overwriteFile();
         }
     }
 
@@ -71,6 +72,7 @@ public class Libraries {
             libB.addNewWord("před", "before");
             libB.addNewWord("obor", "field");
             libB.addNewWord("hledat", "look for");
+            libB.overwriteFile();
         }
     }
 
@@ -91,6 +93,7 @@ public class Libraries {
             libC.addNewWord("před", "before");
             libC.addNewWord("obor", "field");
             libC.addNewWord("hledat", "look for");
+            libC.overwriteFile();
         }
     }
 }

@@ -30,6 +30,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 //import javafx.scene.layout.Background;
 import javafx.scene.shape.Rectangle;
+import java.util.regex.*;
 
 /**
  * GUI controller, somewhat similar to main class, because it communicates with
@@ -58,6 +59,8 @@ public class FXMLDocumentController implements Initializable {
     private AnchorPane AnchorLibrary;
     @FXML
     private ComboBox<String> chooseLibraryComboBox;
+    @FXML
+    private Label LibraryMessageLabel;
 
 //---------------history------------------
     @FXML
@@ -102,16 +105,22 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void addFile() throws IOException {
         if (!textfieldIN.getText().equals("")) {
-            System.out.println(textfieldIN.getText());
-            String[] s = textfieldIN.getText().split("/");
-            String name = s[s.length - 1];
-            String folder = "";
-            for (int i = 0; i < s.length - 1; i++) {
-                folder += s[i] + "/";
+            Pattern pattern = Pattern.compile("[A-Za-z0-9/_]", Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(textfieldIN.getText());
+            if (matcher.find()) {
+                System.out.println(textfieldIN.getText());
+                String[] s = textfieldIN.getText().split("/");
+                String name = s[s.length - 1];
+                String folder = "";
+                for (int i = 0; i < s.length - 1; i++) {
+                    folder += s[i] + "/";
+                }
+                files.add(new MyFile(name, folder));
+                update();
+                msgLabel.setText("");
+            } else {
+                msgLabel.setText("Try different name, it \ndoes not match regex of\n this program");
             }
-            files.add(new MyFile(name, folder));
-            update();
-            msgLabel.setText("");
         } else {
             msgLabel.setText("You need to write path \nfirst");
         }
@@ -217,9 +226,10 @@ public class FXMLDocumentController implements Initializable {
             try {
                 GuiForLearning learn = new GuiForLearning(libraries.get(getLibraryIndex(chooseLibraryComboBox.getValue())), learningGUI, vocabLabel, card, nextBtn, knowAlreadyButton, exitLearningBtn);
                 learn.start();
-                msgLabel.setText("");
+                LibraryMessageLabel.setText("Welcome to libraries");
             } catch (NullPointerException e) {
-                msgLabel.setText("File not chosen.");
+                LibraryMessageLabel.setText("File not chosen.");
+
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
@@ -229,13 +239,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void goToHistory() {
         AnchorHistory.setVisible(true);
-        historyTextArea.setText(BinaryFilesManager.tooString());
+        historyTextArea.setText(" datum      : soubor : počet naučených slov\n" + BinaryFilesManager.tooString());
     }
 
     @FXML
     public void clearHistory() {
         BinaryFilesManager.removeAllRecords();
-        historyTextArea.setText(BinaryFilesManager.tooString());
+        historyTextArea.setText(" datum      : soubor : počet naučených slov\n" + BinaryFilesManager.tooString());
     }
 
     public void createFile() throws IOException {
@@ -340,6 +350,7 @@ public class FXMLDocumentController implements Initializable {
         learningGUI.setVisible(false);
         AnchorChangeFile.setVisible(false);
         AnchorLibrary.setVisible(false);
+        AnchorHistory.setVisible(false);
         files = new ArrayList<MyFile>();
         libraries = new ArrayList<Library>();
         Libraries.DoLibraries();

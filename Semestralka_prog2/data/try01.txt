@@ -4,4 +4,3 @@ jezdit=drive
 slovo=word
 číst=read
 změna=change
-

@@ -259,9 +259,9 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorLibrary" prefHeight="672.0" prefWidth="893.0">
+      <AnchorPane fx:id="AnchorLibrary" prefHeight="672.0" prefWidth="893.0" visible="false">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c1a11" height="672.0" stroke="BLACK" strokeType="INSIDE" width="893.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#060d0b" height="672.0" stroke="BLACK" strokeType="INSIDE" width="893.0" />
             <Label layoutX="381.0" layoutY="24.0" prefHeight="24.0" prefWidth="188.0" text="Knihovny" textFill="#ababab">
                <font>
                   <Font name="Arial Black" size="33.0" />

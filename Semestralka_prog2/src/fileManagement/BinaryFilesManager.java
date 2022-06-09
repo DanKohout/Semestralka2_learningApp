@@ -182,7 +182,7 @@ public class BinaryFilesManager {
     public static String tooString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < when.size(); i++) {
-            sb.append(String.format("%s  %s  %d", when.get(i).toString(), fromWhere.get(i), numOfWords.get(i)));
+            sb.append(String.format("%s %9s    %5d", when.get(i).toString(), fromWhere.get(i), numOfWords.get(i)));
             sb.append("\n");
         }
         return sb.toString();
