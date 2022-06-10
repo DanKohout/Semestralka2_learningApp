@@ -39,16 +39,20 @@ public class BinaryFilesManager {
     public static boolean addRecord(LocalDate l, String fileName, int numOfWordsLearned) {
         try {
             if (f.exists()) {
-                readBinaryResults(f);
-                when.add(l);
-                fromWhere.add(fileName);
-                numOfWords.add(numOfWordsLearned);
-                saveToBinary(f);
+                if (numOfWordsLearned != 0) {
+                    readBinaryResults(f);
+                    when.add(l);
+                    fromWhere.add(fileName);
+                    numOfWords.add(numOfWordsLearned);
+                    saveToBinary(f);
+                }
                 return true;
             } else {
                 f.createNewFile();
                 System.out.println("file data/data2.dat vytvořen");
-                addRecord(l, fileName, numOfWordsLearned);
+                if (numOfWordsLearned != 0) {
+                    addRecord(l, fileName, numOfWordsLearned);
+                }
                 return true;
             }
         } catch (FileNotFoundException e) {
@@ -182,12 +186,12 @@ public class BinaryFilesManager {
     public static String tooString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < when.size(); i++) {
-            sb.append(String.format("%s %9s    %5d", when.get(i).toString(), fromWhere.get(i), numOfWords.get(i)));
+            sb.append(String.format("%s                %-25d %s", when.get(i).toString(), numOfWords.get(i), fromWhere.get(i)));
             sb.append("\n");
         }
         return sb.toString();
     }
-/*
+    /*
     public static void main(String[] args) throws IOException {
         LocalDate l = LocalDate.parse("2020-02-01");
         readBinaryResults(f);
@@ -196,5 +200,5 @@ public class BinaryFilesManager {
         numOfWords.add(5);
         saveToBinary(f);
     }
-*/
+     */
 }

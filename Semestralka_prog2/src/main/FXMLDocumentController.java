@@ -4,6 +4,7 @@
  */
 package main;
 
+import Utils.SortEnum;
 import fileManagement.*;
 import learning_process.*;
 
@@ -82,6 +83,8 @@ public class FXMLDocumentController implements Initializable {
     private TextField RemoveWordTextField;
     @FXML
     private TextArea displayWordsArea;
+    @FXML
+    private Label msgLabelChange;
 //------------learningGUI-----------------
     @FXML
     private Rectangle card;
@@ -105,7 +108,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void addFile() throws IOException {
         if (!textfieldIN.getText().equals("")) {
-            Pattern pattern = Pattern.compile("[A-Za-z0-9/_]", Pattern.CASE_INSENSITIVE);
+            Pattern pattern = Pattern.compile("[ěščřžýáíéóúůďťňĎŇŤŠČŘŽÝÁÍÉÚŮĚÓA-Za-z0-9/_]", Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(textfieldIN.getText());
             if (matcher.find()) {
                 System.out.println(textfieldIN.getText());
@@ -239,13 +242,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void goToHistory() {
         AnchorHistory.setVisible(true);
-        historyTextArea.setText(" datum      : soubor : počet naučených slov\n" + BinaryFilesManager.tooString());
+        historyTextArea.setText(" datum   :  počet naučených slov    : soubor\n" + BinaryFilesManager.tooString());
     }
 
     @FXML
     public void clearHistory() {
         BinaryFilesManager.removeAllRecords();
-        historyTextArea.setText(" datum      : soubor : počet naučených slov\n" + BinaryFilesManager.tooString());
+        historyTextArea.setText(" datum   :  počet naučených slov   : soubor\n" + BinaryFilesManager.tooString());
     }
 
     public void createFile() throws IOException {
@@ -253,14 +256,13 @@ public class FXMLDocumentController implements Initializable {
         update();
     }
 
-    public void readFile() {
+    /*public void readFile() {
         try (BufferedWriter out = new BufferedWriter(new FileWriter("a.txt"))) {
 
         } catch (IOException e) {
             System.out.println("" + e.getMessage());
         }
-    }
-
+    }*/
     @FXML
     public void changeFile() throws FileNotFoundException {
         if ((changeComboBox1.getValue() != null)) {
@@ -273,12 +275,32 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    @FXML
+    public void sortFileByWord() {
+        sortFile(SortEnum.word);
+    }
+
+    @FXML
+    public void sortFileByTranslation() {
+        sortFile(SortEnum.translation);
+    }
+
+    private void sortFile(SortEnum s) {
+        try {
+            files.get(getFileIndex(changeComboBox1.getValue())).sort(s);
+            refreshChange();
+            msgLabelChange.setText("File sorted");
+        } catch (FileNotFoundException e) {
+            msgLabelChange.setText("File not found");
+        }
+    }
+
     private void refreshChange() throws FileNotFoundException {
         if ((changeComboBox1.getValue() != null)) {
             String words = files.get(getFileIndex(changeComboBox1.getValue())).getAllWords();
             displayWordsArea.setText(words);
         } else {
-            msgLabel.setText("choose file please");
+            msgLabelChange.setText("choose file please");
         }
     }
 
@@ -289,8 +311,9 @@ public class FXMLDocumentController implements Initializable {
             if (a) {
                 files.get(getFileIndex(changeComboBox1.getValue())).addNewWord(AddWordTextField.getText(), AddTranslTextField.getText());
                 refreshChange();
+                msgLabelChange.setText("Word added");
             } else {
-                msgLabel.setText("not enough inputs");
+                msgLabelChange.setText("not enough inputs");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -304,8 +327,9 @@ public class FXMLDocumentController implements Initializable {
                 System.out.println("in remove word");
                 files.get(getFileIndex(changeComboBox1.getValue())).removeWord(RemoveWordTextField.getText());
                 refreshChange();
+                msgLabelChange.setText("Word removed");
             } else {
-                msgLabel.setText("not enough inputs");
+                msgLabelChange.setText("not enough inputs");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -313,12 +337,13 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    void saveFile() throws FileNotFoundException, IOException {
+    public void saveFile() throws FileNotFoundException, IOException {
         if ((changeComboBox1.getValue() != null)) {
             files.get(getFileIndex(changeComboBox1.getValue())).overwriteFile();
+            msgLabelChange.setText("file saved");
         } else {
             System.out.println("error in saving file, file not found");
-            msgLabel.setText("choose file please");
+            msgLabelChange.setText("choose file please");
         }
     }
 

@@ -1,5 +1,5 @@
-cist=read
-poslouchat=listen
-kohout=cock
 problémek?=Clueless
+kohout=cock
+poslouchat=listen
 1=one
+cist=read

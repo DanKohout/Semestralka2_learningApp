@@ -4,6 +4,7 @@
  */
 package fileManagement;
 
+import Utils.SortEnum;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,6 +14,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * class made for creating and managing file that is read from and etc.
@@ -217,5 +220,35 @@ public class MyFile implements Files {
         }
         return i;
     }
+
+    /**
+     * Metoda pro seřazení kolekce podle slova či překladu
+     *
+     * @param method
+     */
+    public void sort(SortEnum method) {
+        switch (method) {
+            case word:
+                Collections.sort(words);
+                break;
+            case translation:
+                Collections.sort(words, SORT_BY_TRANSLATION);
+                break;
+        }
+    }
+
+    private static final Comparator<Word> SORT_BY_TRANSLATION = (Word t1, Word t2) -> {
+        String transl = t1.getTransl();
+        String transl2 = t2.getTransl();
+        int value;
+        if (transl == null) {
+            transl = " ";
+        }
+        if (transl2 == null) {
+            transl2 = " ";
+        }
+        value = transl.compareTo(transl2);
+        return value;
+    };
 
 }

@@ -154,7 +154,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorChangeFile" prefHeight="672.0" prefWidth="893.0" visible="false">
+      <AnchorPane fx:id="AnchorChangeFile" prefHeight="672.0" prefWidth="893.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#07110d" height="672.0" stroke="BLACK" strokeType="INSIDE" width="893.0" />
             <AnchorPane layoutX="486.0" layoutY="344.0" prefHeight="200.0" prefWidth="200.0">
@@ -204,10 +204,10 @@
             </Button>
             <AnchorPane layoutX="81.0" layoutY="87.0" prefHeight="502.0" prefWidth="369.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#05b27011" height="496.0" layoutY="-1.0" stroke="#05b373" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="363.0" />
-                  <Button layoutX="253.0" layoutY="433.0" mnemonicParsing="false" onAction="#saveFile" prefHeight="33.0" prefWidth="78.0" style="-fx-background-color: #252525; -fx-background-radius: 17px;" text="Save" textFill="#04d384">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#05b27011" height="502.0" layoutY="-1.0" stroke="#05b373" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="363.0" />
+                  <Button layoutX="273.0" layoutY="450.0" mnemonicParsing="false" onAction="#saveFile" prefHeight="36.0" prefWidth="80.0" style="-fx-background-color: #252525; -fx-background-radius: 25px;" text="Save" textFill="#04d384">
                      <font>
-                        <Font name="Arial Black" size="15.0" />
+                        <Font name="Arial Black" size="18.0" />
                      </font>
                   </Button>
                   <Label layoutX="26.0" layoutY="17.0" text="vypsani slovicek ze souboru:" textFill="#ababab">
@@ -220,11 +220,21 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="displayWordsArea" editable="false" layoutX="36.0" layoutY="57.0" prefHeight="356.0" prefWidth="194.0">
+                  <TextArea fx:id="displayWordsArea" editable="false" layoutX="36.0" layoutY="57.0" prefHeight="346.0" prefWidth="194.0">
                      <font>
                         <Font name="Arial Black" size="13.0" />
                      </font>
                   </TextArea>
+                  <Button layoutX="35.0" layoutY="456.0" mnemonicParsing="false" onAction="#sortFileByTranslation" prefHeight="33.0" prefWidth="188.0" style="-fx-background-color: #252525; -fx-background-radius: 17px;" text="Sort by Translation" textFill="#04d384">
+                     <font>
+                        <Font name="Arial Black" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="36.0" layoutY="414.0" mnemonicParsing="false" onAction="#sortFileByWord" prefHeight="33.0" prefWidth="133.0" style="-fx-background-color: #252525; -fx-background-radius: 17px;" text="Sort by Word" textFill="#04d384">
+                     <font>
+                        <Font name="Arial Black" size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="503.0" layoutY="96.0" prefHeight="206.0" prefWidth="328.0">
@@ -257,6 +267,16 @@
                   </Label>
                </children>
             </AnchorPane>
+            <Label layoutX="33.0" layoutY="607.0" text="Messages for user:" textFill="#979797">
+               <font>
+                  <Font name="Arial Black" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="msgLabelChange" layoutX="217.0" layoutY="607.0" text="Hello" textFill="#979797">
+               <font>
+                  <Font name="Arial Black" size="17.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="AnchorLibrary" prefHeight="672.0" prefWidth="893.0" visible="false">
