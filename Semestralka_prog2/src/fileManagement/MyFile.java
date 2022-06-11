@@ -41,7 +41,6 @@ public class MyFile implements Files {
         words = new ArrayList<>();
         this.name = name;
         this.folder = folder;
-        //createFile(name, folder);
     }
 
     /**
@@ -54,9 +53,6 @@ public class MyFile implements Files {
 
     /**
      * creates file if file doesn't exist, if file exists it assignes File to it
-     *
-     * @param folder
-     * @param name
      */
     @Override
     public void createFile() {

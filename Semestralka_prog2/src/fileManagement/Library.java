@@ -96,7 +96,8 @@ public class Library implements Files {
                 if (splitString.length == 2) {
                     addNewWord(splitString[0], splitString[1]);
                 } else {
-                    System.out.println("chyba na radku " + radek);
+                    System.out.println(splitString[0]);
+                    //System.out.println("chyba na radku(lib) " + radek+name);
                 }
             }
         }
