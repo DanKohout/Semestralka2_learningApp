@@ -1,0 +1,59 @@
+rozdílnost=variety
+vyděšený=scared
+udržovat=maintain
+hodnota=worth
+běžný=common
+až do=until
+mysl=mind
+docela, 
+spíše=rather
+údaj, číslo=figure
+obchod,
+dohoda=deal
+přidat=add
+případ=cause
+zdroj=source
+k dispozici=availible
+ačkoli=although
+soustředit se=focus
+akcie,
+zásoba=stock
+dokud=until
+považovat,
+zvážit=consider
+nicméně,
+avšak=however
+zkušenost,
+zážitek=experience
+přistoupit k=access
+obsahovat=include
+obsažený,
+zahrnutý=involved
+určit,
+stanovit=determine
+reklama=commercial
+rys,
+vlastnost=feature
+jestli=whether
+lidský=human
+stát za=worth
+částečný,
+konkrétní=particular
+příklad=instance
+nakoupit=purchase
+poskytnout=provide
+možná=might
+rada=board
+jídlo v
+hotelu
+/penze=board
+jednou=once
+nastavit=set up
+interval=range
+současný=current
+půda, zem=soil
+bytost=being
+přístup=access
+dodatečný=additional
+tvůrčí=creative
+náklad=cost

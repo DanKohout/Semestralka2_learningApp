@@ -68,7 +68,6 @@ public class MyFile implements Files {
             }
             if (newFile.createNewFile()) {
                 System.out.println("File created: " + newFile.getName());
-
             } else {
                 assignToExistingFile(name, folder);
             }
@@ -87,7 +86,6 @@ public class MyFile implements Files {
         String a = name + ".txt";
         newFile = new File(folder + a);
         if (newFile.exists()) {
-            System.out.println("file exists (success)");
             readFile();
         }
     }
