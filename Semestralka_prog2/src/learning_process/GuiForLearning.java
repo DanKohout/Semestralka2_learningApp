@@ -115,6 +115,18 @@ public class GuiForLearning {
                 vocabLabel.setText(" file is\n empty");
             }
         });
+        vocabLabel.setOnMouseClicked(v -> {
+            transl = !transl;
+            if (file.getNumOfWords() != 0) {
+                if (transl) {
+                    vocabLabel.setText(file.getWord(index).getTransl());
+                } else {
+                    vocabLabel.setText(file.getWord(index).getWord());
+                }
+            } else {
+                vocabLabel.setText(" file is\n empty");
+            }
+        });
 
     }
 

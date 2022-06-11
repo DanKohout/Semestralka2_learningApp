@@ -29,7 +29,6 @@ import javafx.scene.control.TextField;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-//import javafx.scene.layout.Background;
 import javafx.scene.shape.Rectangle;
 import java.util.regex.*;
 
@@ -40,7 +39,7 @@ import java.util.regex.*;
  * @author daniel kohout
  */
 public class FXMLDocumentController implements Initializable {
-
+    
     @FXML
     private ComboBox<String> chooseFileComboBox;
     @FXML
@@ -94,7 +93,7 @@ public class FXMLDocumentController implements Initializable {
     private AnchorPane learningGUI;
     @FXML
     private Label vocabLabel;
-
+    
     BufferedWriter reader1;
     ArrayList<MyFile> files;
     ArrayList<Library> libraries;
@@ -343,7 +342,7 @@ public class FXMLDocumentController implements Initializable {
      * method for refreshing changes done to words displayed
      */
     private void refreshChange() throws FileNotFoundException {
-
+        
         if ((changeComboBox1.getValue() != null)) {
             String words = files.get(getFileIndex(changeComboBox1.getValue())).getAllWords();
             displayWordsArea.setText(words);
@@ -435,7 +434,7 @@ public class FXMLDocumentController implements Initializable {
         AddWordTextField.setText("");
         AddTranslTextField.setText("");
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         comboboxesValues = FXCollections.observableArrayList();
@@ -456,9 +455,10 @@ public class FXMLDocumentController implements Initializable {
         libraries.add(Libraries.getLibC());
         BinaryFilesManager.startup();
         update();
-
+        vocabLabel.setWrapText(true);
+        vocabLabel.setMaxWidth(520);
         createFile();
-
+        
     }
-
+    
 }
