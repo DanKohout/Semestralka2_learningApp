@@ -46,3 +46,21 @@ Zadání
 
 18.Javadoc - každá třída a metoda musí mít javadoc popis, abyste mohli na závěr vygenerovat javadoc dokumentaci. 
 
+
+
+
+
+
+classDiagram
+Semestralka_prog2 <|-- FXMLDocument
+Semestralka_prog2 <|-- FXMLDocumentController
+FXMLDocumentController <-- GUIForLearning
+FXMLDocumentController <-- MyFile
+FXMLDocumentController <-- Libraries
+Libraries <-- Library
+Files <-- Library : implements
+Files <-- MyFile : implements
+
+
+
+
