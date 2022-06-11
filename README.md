@@ -97,22 +97,22 @@ classDiagram
 + Change - upravování souboru (přesunutí do okna change)
 + Start - 
 + Knihovny - 
-+ Historie - 
++ Historie -
+### Úprava
 ![img](./pic_for_doc/okno2.png)
 + remove
 + add
 + save
 + sort by name
 + sort by translation
+### Knihovny
 ![img](./pic_for_doc/okno3.png)
 + vybrat knihovnu A/B/C
 + start
+### Historie
 ![img](./pic_for_doc/okno4.png)
 + clear history
-+
-+
-+
-+
+### Proces učení
 ![img](./pic_for_doc/okno4.png)
 + next
 + knowAlready
