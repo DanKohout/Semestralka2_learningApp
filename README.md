@@ -1,11 +1,10 @@
-# Semestralka2_learningApp
-learning app with javafx GUI
+# Learning app with javafx GUI
 
-Úvod
+## Úvod
 Program slouží pro učení se slovíček a bude v GUI dělané pomocí javafx. Uživatel si bude moci přes GUI zadat cesty ke svým txt souborům se slovíčky, či vybrat jednu ze tří knihoven, ze kterých se může učit. Po vybrání souboru, či knihovny se může slovíčka učit. Učení je jednoduchým principem "otáčející se karty", kde na jedné straně je význam slova v jednom jazyce a na druhém jeho překlad, překladem je míněno slovo v jazyce, které se chcete naučit. Poté stačí klikat na tlačítko next, které načte další slovíčko v pořadí, u každého slovíčka je zde také tlačítko "know already", které po zmáčkunít přestane dané slovíčko zobrazovat při dalších procházení. Jako další funkce je zde upravování svých txt souborů, kde je možnost slovíčko přídat, odebrat, či jen seřadit slovíčka v textovém souboru a uložit jej. Poté zde bude možnost historie, kde budou zobrazovány záznamy o kolik slovíček, z jakého souboru a jaký den se člověk naučil.
 
 
-Zadání
+## Zadání
 
 1.Menu, které umožní opakovaný výběr funkcí aplikácie a ukončení aplikace
 
@@ -47,44 +46,52 @@ Zadání
 18.Javadoc - každá třída a metoda musí mít javadoc popis, abyste mohli na závěr vygenerovat javadoc dokumentaci. 
 
 
-classDiagram
-    Animal <|-- Duck
-    Animal <|-- Fish
-    Animal <|-- Zebra
-    Animal : +int age
-    Animal : +String gender
-    Animal: +isMammal()
-    Animal: +mate()
-    class Duck{
-      +String beakColor
-      +swim()
-      +quack()
-    }
-    class Fish{
-      -int sizeInFeet
-      -canEat()
-    }
-    class Zebra{
-      +bool is_wild
-      +run()
-    }
-            
+## Diagram (zjednodušený)            
 
-
-
+```mermaid
 classDiagram
   Semestralka_prog2 <|-- FXMLDocument
   Semestralka_prog2 <|-- FXMLDocumentController
-  Class FXMLDocumentController{
-    +GUI
+  class FXMLDocumentController{
+    +addFile()
+    +removeFile()
+    +start()
+    +startLibrary()
+    +changeFile()
   }
-FXMLDocumentController <-- GUIForLearning
-FXMLDocumentController <-- MyFile
-FXMLDocumentController <-- Libraries
-Libraries <-- Library
-Files <-- Library : implements
-Files <-- MyFile : implements
+  FXMLDocumentController <-- GUIForLearning
+  GUIForLearning <-- FXMLDocumentController
+  class GUIForLearning{
+    +start()
+  }
+  FXMLDocumentController <-- MyFile
+  class MyFile{
+    - ArrayList ⟨Word⟩
+    +createFile()
+    +readFile()
+    +overwriteFile()
+  }
+  FXMLDocumentController <-- Libraries
+  Libraries <-- Library
+  class Library{
+    - ArrayList ⟨Word⟩
+    +createFile()
+    +readFile()
+  }
+  Library o--o Files : implements
+  MyFile o--o Files : implements
+  <<interface>> Files
+  MyFile --> Word
+  Library --> Word
+  MyFile --> SortMethod : enum
+  GUIForLearning ..  BinaryFilesManager : uses
+  FXMLDocumentController ..  BinaryFilesManager : uses
+  <<static>> BinaryFilesManager
+```
 
 
+
+
+![img](./pic_for_doc/addingTextFile.PNG)
 
 
