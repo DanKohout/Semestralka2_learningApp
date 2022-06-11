@@ -24,13 +24,15 @@ import java.util.ArrayList;
  */
 public class BinaryFilesManager {
 
-    private static ArrayList<LocalDate> when;
-    private static ArrayList<String> fromWhere;
-    private static ArrayList<Integer> numOfWords;
+    private static ArrayList<LocalDate> when = new ArrayList<>();
+    private static ArrayList<String> fromWhere = new ArrayList<>();
+    private static ArrayList<Integer> numOfWords = new ArrayList<>();
     private static int helpingNumber = 0;
     private static File f = new File("data/data2.dat");
 
     /**
+     * method for adding a record
+     *
      * @param l - LocalDate - date of the record
      * @param fileName
      * @param numOfWordsLearned
@@ -66,23 +68,28 @@ public class BinaryFilesManager {
     }
 
     /**
+     * method for adding a record
      *
+     * @param year
+     * @param month
+     * @param day
+     * @param fileName
+     * @param numOfWordsLearned
      */
     public static void addRecord(int year, int month, int day, String fileName, int numOfWordsLearned) {
         LocalDate l = LocalDate.parse(formatDate(year, month, day));
         addRecord(l, fileName, numOfWordsLearned);
     }
 
+    /**
+     * method for initializing BinaryFilesManager
+     */
     public static void startup() {
-        when = new ArrayList<>();
-        fromWhere = new ArrayList<String>();
-        numOfWords = new ArrayList<Integer>();
         try {
             if (f.exists()) {
                 readBinaryResults(f);
             } else {
                 f.createNewFile();
-                System.out.println("file data/data2.dat vytvořen");
                 readBinaryResults(f);
             }
         } catch (FileNotFoundException e) {
@@ -116,8 +123,7 @@ public class BinaryFilesManager {
      * @throws java.io.FileNotFoundException
      */
     private static void saveToBinary(File results) throws FileNotFoundException, IOException {
-        FileOutputStream outf;
-        try (DataOutputStream out = new DataOutputStream(outf = new FileOutputStream(results, true))) {
+        try (DataOutputStream out = new DataOutputStream(new FileOutputStream(results, true))) {
             for (int i = helpingNumber; i < when.size(); i++) {
 
                 int yyyy = when.get(i).getYear();
@@ -137,6 +143,7 @@ public class BinaryFilesManager {
     }
 
     /**
+     * reads all records from binary file
      *
      * @param results
      * @throws java.io.FileNotFoundException
@@ -171,6 +178,14 @@ public class BinaryFilesManager {
         }
     }
 
+    /**
+     * method for formatting date into format yyyy-mm-dd
+     *
+     * @param int yyyy
+     * @param int mm
+     * @param int dd
+     * @return String yyyy-mm-dd
+     */
     private static String formatDate(int yyyy, int mm, int dd) {
         if (mm < 10 && dd < 10) {
             return (yyyy + "-0" + mm + "-0" + dd);
@@ -183,6 +198,9 @@ public class BinaryFilesManager {
         }
     }
 
+    /**
+     * @return formatted String of all Records
+     */
     public static String tooString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < when.size(); i++) {

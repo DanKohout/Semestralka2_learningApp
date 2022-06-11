@@ -41,7 +41,7 @@ public class MyFile implements Files {
         words = new ArrayList<>();
         this.name = name;
         this.folder = folder;
-        createFile(name, folder);
+        //createFile(name, folder);
     }
 
     /**
@@ -59,7 +59,7 @@ public class MyFile implements Files {
      * @param name
      */
     @Override
-    public void createFile(String name, String folder) {
+    public void createFile() {
         String a = name + ".txt";
         try {
             newFile = new File(folder + a);
@@ -93,8 +93,12 @@ public class MyFile implements Files {
     }
 
     /**
-     * reads txt file and adds all words to Arraylist words
+     * method reads txt file and adds all words to Arraylist words
+     *
+     * @throws java.io.FileNotFoundException
+     * @throws java.io.IOException
      */
+    @Override
     public void readFile() throws FileNotFoundException, IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(newFile))) {
             String line;
@@ -112,6 +116,12 @@ public class MyFile implements Files {
     }
 
     /**
+     * method for saving changes into file, first it deletes content and then
+     * writes words from "words" (Arraylist< Word>) which should every
+     * implementation have
+     *
+     * @throws java.io.FileNotFoundException
+     * @throws java.io.IOException
      */
     @Override
     public void overwriteFile() throws FileNotFoundException, IOException {
@@ -123,6 +133,8 @@ public class MyFile implements Files {
     }
 
     /**
+     * adds new word to memory
+     *
      * @param a word in first language
      * @param b word in second language
      */
@@ -133,7 +145,7 @@ public class MyFile implements Files {
 
     /**
      * @param index
-     * @return
+     * @return Word of desired index
      */
     @Override
     public Word getWord(int index) {
@@ -141,6 +153,8 @@ public class MyFile implements Files {
     }
 
     /**
+     * removes word by its index
+     *
      * @param index
      */
     public void removeWord(int index) {
@@ -148,7 +162,9 @@ public class MyFile implements Files {
     }
 
     /**
-     * @param s
+     * method removes word by its name
+     *
+     * @param s is its name
      */
     public void removeWord(String s) {
         int index = -1;
@@ -165,6 +181,8 @@ public class MyFile implements Files {
     }
 
     /**
+     * method removes word and adds another
+     *
      * @param index
      * @param a
      * @param b
@@ -236,7 +254,9 @@ public class MyFile implements Files {
                 break;
         }
     }
-
+    /**
+     * new Comparator by translation
+     */
     private static final Comparator<Word> SORT_BY_TRANSLATION = (Word t1, Word t2) -> {
         String transl = t1.getTransl();
         String transl2 = t2.getTransl();

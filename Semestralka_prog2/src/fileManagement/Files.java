@@ -20,14 +20,14 @@ public interface Files {
 
     /**
      * creates file if file doesn't exist, if file exists it assignes File to it
-     *
-     * @param name - is name of the file without .txt, example "file_01"
-     * @param folder - is folder of the file, example "data/"
      */
-    public void createFile(String name, String folder);
+    public void createFile();
 
     /**
      * method reads txt file
+     *
+     * @throws java.io.FileNotFoundException
+     * @throws java.io.IOException
      */
     public void readFile() throws FileNotFoundException, IOException;
 

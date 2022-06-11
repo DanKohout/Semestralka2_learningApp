@@ -5,6 +5,7 @@
 package Utils;
 
 /**
+ * enum for choosing by which String you will be sorting
  *
  * @author daniel kohout
  */

@@ -1,5 +1,4 @@
-problémek?=Clueless
-kohout=cock
+problém=problem
 poslouchat=listen
-1=one
+jedna=one
 cist=read

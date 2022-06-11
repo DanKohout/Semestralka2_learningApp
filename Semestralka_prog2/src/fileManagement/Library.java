@@ -26,11 +26,16 @@ public class Library implements Files {
 
     private ArrayList<Word> words;
 
+    /**
+     * constructor for library
+     *
+     * @param name
+     * @param folder
+     */
     public Library(String name, String folder) {
         words = new ArrayList<>();
         this.name = name;
         this.folder = folder;
-        createFile(name, folder);
     }
 
     /**
@@ -43,12 +48,9 @@ public class Library implements Files {
 
     /**
      * creates file if file doesn't exist, if file exists it assignes File to it
-     *
-     * @param name - is name of the file without .txt, example "file_01"
-     * @param folder - is folder of the file, example "data/"
      */
     @Override
-    public void createFile(String name, String folder) {
+    public void createFile() {
         String a = name + ".txt";
         try {
             newFile = new File(folder + a);
@@ -81,8 +83,9 @@ public class Library implements Files {
     }
 
     /**
-     * method reads txt file
+     * method reads txt file and adds all words
      */
+    @Override
     public void readFile() throws FileNotFoundException, IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(newFile))) {
             String line;
@@ -123,7 +126,7 @@ public class Library implements Files {
 
     /**
      * @param index
-     * @return
+     * @return Word of desired index
      */
     @Override
     public Word getWord(int index) {

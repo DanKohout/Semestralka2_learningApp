@@ -47,12 +47,12 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Button fx:id="addTXTb" layoutX="262.0" layoutY="130.0" mnemonicParsing="false" onAction="#addFile" prefHeight="33.0" prefWidth="66.0" style="-fx-background-color: #333; -fx-background-radius: 17px;" text="Add" textFill="#04d384">
+                  <Button layoutX="262.0" layoutY="130.0" mnemonicParsing="false" onAction="#addFile" prefHeight="33.0" prefWidth="66.0" style="-fx-background-color: #333; -fx-background-radius: 17px;" text="Add" textFill="#04d384">
                      <font>
                         <Font name="Arial Black" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="removeFileTXT" layoutX="238.0" layoutY="279.0" mnemonicParsing="false" onAction="#removeFile" prefHeight="33.0" prefWidth="91.0" style="-fx-background-color: #333; -fx-background-radius: 17px;" text="Remove" textFill="#04d384">
+                  <Button layoutX="238.0" layoutY="279.0" mnemonicParsing="false" onAction="#removeFile" prefHeight="33.0" prefWidth="91.0" style="-fx-background-color: #333; -fx-background-radius: 17px;" text="Remove" textFill="#04d384">
                      <font>
                         <Font name="Arial Black" size="15.0" />
                      </font>
@@ -154,7 +154,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorChangeFile" prefHeight="672.0" prefWidth="893.0">
+      <AnchorPane fx:id="AnchorChangeFile" prefHeight="672.0" prefWidth="893.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#07110d" height="672.0" stroke="BLACK" strokeType="INSIDE" width="893.0" />
             <AnchorPane layoutX="486.0" layoutY="344.0" prefHeight="200.0" prefWidth="200.0">

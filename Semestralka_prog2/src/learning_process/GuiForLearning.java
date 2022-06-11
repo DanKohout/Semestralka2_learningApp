@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 
 /**
+ * This class is extension of FXMLDocumentController
  *
  * @author daniel kohout
  */
@@ -28,13 +29,15 @@ public class GuiForLearning {
     private int index = 0;
 
     /**
-     * constructor for class
+     * constructor for class GuiForLearning
      *
      * @param file - file from which we will get the words
      * @param learningGUI - for making learning gui visible
      * @param vocabLabel - label for the word we want to project
      * @param card - rectangle which is "card" on which are the words projected
      * @param nextBtn - for going to next word
+     * @param knowAlreadyB -
+     * @param exit - exiting Learning page
      */
     public GuiForLearning(Files file, AnchorPane learningGUI, Label vocabLabel, Rectangle card, Button nextBtn, Button knowAlreadyB, Button exit) {
         this.file = file;
@@ -47,8 +50,7 @@ public class GuiForLearning {
     }
 
     /**
-     * "creates" another window meant for learning (creates it on top of the
-     * menu)
+     * "creates" another page/window meant for learning
      */
     public void start() {
         learningGUI.setVisible(true);
@@ -59,7 +61,7 @@ public class GuiForLearning {
     }
 
     /**
-     * for getting to next word(vocable)
+     * method for getting to next word(vocable)
      */
     private void getNext() {
         nextBtn.setOnAction(v -> {
