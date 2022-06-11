@@ -93,29 +93,30 @@ classDiagram
 ### Hlavní menu
 ![img](./pic_for_doc/okno1.png)
 + Add - přidání souboru
-+ Remove - odebrání souboru z aplikace
-+ Change - upravování souboru (přesunutí do okna change)
-+ Start - 
-+ Knihovny - 
-+ Historie -
++ Remove - odebrání vybraného souboru z aplikace
++ Change - upravování vybraného souboru (přesunutí do okna change)
++ Start - po vybrání souboru, přesunutí do okna Proces Učení
++ Knihovny - přesun do okna Knihoven ze kterých se můžeš učit
++ Historie - přesun do okna Historie, kde jsou záznamy o počtu naučených slovíček
 ### Úprava
 ![img](./pic_for_doc/okno2.png)
-+ remove
-+ add
-+ save
-+ sort by name
-+ sort by translation
++ remove - odstranění slovíčka z daného souboru
++ add - přidání slovíčka z daného souboru
++ sort by name - setřídit slovíčka v souboru podle slovíčka v prvním jazyce
++ sort by translation - setřídit slovíčka v souboru podle slovíčka v druhém jazyce
++ save - uložení/zapsání změn do daného souboru
 ### Knihovny
 ![img](./pic_for_doc/okno3.png)
 + vybrat knihovnu A/B/C
-+ start
++ start - po vybrání z knihoven, přesunutí do okna Proces Učení
 ### Historie
 ![img](./pic_for_doc/okno4.png)
-+ clear history
++ clear history - vymazání všech záznamů z historie
 ### Proces učení
 ![img](./pic_for_doc/okno4.png)
-+ next
-+ knowAlready
++ kliknutím na "kartu" se zobrazí překlad slovíčka
++ next - přesunutí na další slovíčko
++ knowAlready - tlačítko po zmáčknutí způsobí další nezobrazování daného slovíčka při dalších cyklech
 
 ## Příklad funkčnosti
 ### vlastní txt soubor
