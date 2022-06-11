@@ -90,8 +90,14 @@ classDiagram
 ```
 
 
-
-
-![img](./pic_for_doc/addingTextFile.PNG)
+## Příklad funkčnosti
+### vlastní txt soubor
+![img](./pic_for_doc/TextFile.png)
+### přidání txt do programu
+![img](./pic_for_doc/addingTextFile.png)
+### vybrání souboru
+![img](./pic_for_doc/choosingTextFile.png)
+### učení se ze souboru
+![img](./pic_for_doc/startingLearningOfTextFile.png)
 
 
