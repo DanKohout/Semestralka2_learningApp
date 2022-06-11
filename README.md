@@ -52,8 +52,11 @@ Zadání
 
 
 classDiagram
-Semestralka_prog2 <|-- FXMLDocument
-Semestralka_prog2 <|-- FXMLDocumentController
+  Semestralka_prog2 <|-- FXMLDocument
+  Semestralka_prog2 <|-- FXMLDocumentController
+  Class FXMLDocumentController{
+    +GUI
+  }
 FXMLDocumentController <-- GUIForLearning
 FXMLDocumentController <-- MyFile
 FXMLDocumentController <-- Libraries
