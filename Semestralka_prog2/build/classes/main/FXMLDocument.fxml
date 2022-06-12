@@ -354,11 +354,11 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="learningGUI" prefHeight="672.0" prefWidth="893.0" visible="false">
+      <AnchorPane fx:id="learningGUI" prefHeight="672.0" prefWidth="893.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00090d" height="672.0" stroke="BLACK" strokeType="INSIDE" width="893.0" />
             <Rectangle fx:id="card" arcHeight="5.0" arcWidth="5.0" fill="#0b4f40" height="465.0" layoutX="82.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="596.0" />
-            <Label fx:id="vocabLabel" layoutX="136.0" layoutY="249.0" text="VOCAB" textFill="#00ffe1">
+            <Label fx:id="vocabLabel" layoutX="136.0" layoutY="107.0" prefHeight="408.0" prefWidth="520.0" text="VOCAB" textFill="#00ffe1">
                <font>
                   <Font name="System Bold" size="86.0" />
                </font>
