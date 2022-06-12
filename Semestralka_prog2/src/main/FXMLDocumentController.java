@@ -8,18 +8,14 @@ import Utils.SortEnum;
 import fileManagement.*;
 import learning_process.*;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -39,7 +35,7 @@ import java.util.regex.*;
  * @author daniel kohout
  */
 public class FXMLDocumentController implements Initializable {
-    
+
     @FXML
     private ComboBox<String> chooseFileComboBox;
     @FXML
@@ -93,7 +89,7 @@ public class FXMLDocumentController implements Initializable {
     private AnchorPane learningGUI;
     @FXML
     private Label vocabLabel;
-    
+
     BufferedWriter reader1;
     ArrayList<MyFile> files;
     ArrayList<Library> libraries;
@@ -342,7 +338,7 @@ public class FXMLDocumentController implements Initializable {
      * method for refreshing changes done to words displayed
      */
     private void refreshChange() throws FileNotFoundException {
-        
+
         if ((changeComboBox1.getValue() != null)) {
             String words = files.get(getFileIndex(changeComboBox1.getValue())).getAllWords();
             displayWordsArea.setText(words);
@@ -390,7 +386,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     *
+     * saves all changes in txt file (overwrites file)
      */
     @FXML
     public void saveFile() {
@@ -434,7 +430,7 @@ public class FXMLDocumentController implements Initializable {
         AddWordTextField.setText("");
         AddTranslTextField.setText("");
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         comboboxesValues = FXCollections.observableArrayList();
@@ -458,7 +454,7 @@ public class FXMLDocumentController implements Initializable {
         vocabLabel.setWrapText(true);
         vocabLabel.setMaxWidth(520);
         createFile();
-        
+
     }
-    
+
 }
