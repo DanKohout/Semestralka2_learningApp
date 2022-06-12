@@ -147,5 +147,7 @@ classDiagram
 ![img](./pic_for_doc/f2_1.png)
 ### vybrání knihovny
 ![img](./pic_for_doc/f2_2.png)
-### učení se z knihovny
+### zahájení
 ![img](./pic_for_doc/f2_3.png)
+### učení se z knihovny
+![img](./pic_for_doc/f2_4.png)
