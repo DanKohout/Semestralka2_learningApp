@@ -61,7 +61,7 @@ public class Word implements Comparable<Word> {
      */
     @Override
     public int compareTo(Word s) {
-        return s.getWord().compareTo(getWord());
+        return getWord().compareTo(s.getWord());
     }
 
     /**

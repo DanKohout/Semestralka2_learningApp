@@ -154,7 +154,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorChangeFile" prefHeight="672.0" prefWidth="893.0" visible="false">
+      <AnchorPane fx:id="AnchorChangeFile" prefHeight="672.0" prefWidth="893.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#07110d" height="672.0" stroke="BLACK" strokeType="INSIDE" width="893.0" />
             <AnchorPane layoutX="486.0" layoutY="344.0" prefHeight="200.0" prefWidth="200.0">
@@ -220,7 +220,7 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="displayWordsArea" editable="false" layoutX="36.0" layoutY="57.0" prefHeight="346.0" prefWidth="194.0">
+                  <TextArea fx:id="displayWordsArea" editable="false" layoutX="36.0" layoutY="57.0" prefHeight="346.0" prefWidth="292.0">
                      <font>
                         <Font name="Arial Black" size="13.0" />
                      </font>
@@ -354,7 +354,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="learningGUI" prefHeight="672.0" prefWidth="893.0">
+      <AnchorPane fx:id="learningGUI" prefHeight="672.0" prefWidth="893.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00090d" height="672.0" stroke="BLACK" strokeType="INSIDE" width="893.0" />
             <Rectangle fx:id="card" arcHeight="5.0" arcWidth="5.0" fill="#0b4f40" height="465.0" layoutX="82.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="596.0" />
