@@ -132,7 +132,7 @@ classDiagram
   <<static>> BinaryFilesManager
 ```
 
-## Příklad funkčnosti 1
+## Příklad funkčnosti 1 (přes vlastní txt soubor)
 ### vlastní txt soubor
 ![img](./pic_for_doc/TextFile.png)
 ### přidání txt do programu
@@ -142,7 +142,7 @@ classDiagram
 ### učení se ze souboru
 ![img](./pic_for_doc/startingLearningOfTextFile.png)
 
-## Příklad funkčnosti 2
+## Příklad funkčnosti 2 (přes knihovnu)
 ### vstup do knihovny
 ![img](./pic_for_doc/f2_01.png)
 ### vybrání knihovny
