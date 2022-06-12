@@ -144,10 +144,10 @@ classDiagram
 
 ## Příklad funkčnosti 2
 ### vstup do knihovny
-![img](./pic_for_doc/f2_1.png)
+![img](./pic_for_doc/f2_01.png)
 ### vybrání knihovny
-![img](./pic_for_doc/f2_2.png)
+![img](./pic_for_doc/f2_02.png)
 ### zahájení
-![img](./pic_for_doc/f2_3.png)
+![img](./pic_for_doc/f2_03.png)
 ### učení se z knihovny
-![img](./pic_for_doc/f2_4.png)
+![img](./pic_for_doc/f2_04.png)
