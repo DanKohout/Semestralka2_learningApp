@@ -78,13 +78,15 @@ Program slouží pro učení se slovíček a bude v GUI dělané pomocí javafx.
 + knowAlready - tlačítko po zmáčknutí způsobí další nezobrazování daného slovíčka při dalších cyklech
 
 
-## Popis struktury
+## Popis struktury vstupních a výstupních souborů
 ### TXT soubory
++ jsou zároveň vstupní i výstupní
 + String word
 + String translation
 + oddělení pomocí "="
 + příklad: "učit se=learn"
 ### Binární soubory
++ jsou zároveň vstupní i výstupní
 + LocalDate - datum záznamu
 + String - jméno daného souboru
 + Integer - počet naučených slov
@@ -154,9 +156,9 @@ classDiagram
 ![img](./pic_for_doc/f2_04.png)
 
 ## Krajové stavy
-### add
+### add file
 ![img](./pic_for_doc/ERR01.png)
-### remove
+### remove file
 ![img](./pic_for_doc/ERR02.png)
 ### start
 ![img](./pic_for_doc/ERR03.png)
@@ -166,7 +168,7 @@ classDiagram
 ![img](./pic_for_doc/ERR05.png)
 ### libraries
 ![img](./pic_for_doc/ERR06.png)
-### add
+### add word
 ![img](./pic_for_doc/ERR07.png)
-### remove
+### remove word
 ![img](./pic_for_doc/ERR08.png)
