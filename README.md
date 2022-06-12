@@ -152,3 +152,21 @@ classDiagram
 ![img](./pic_for_doc/f2_03.png)
 ### učení se z knihovny
 ![img](./pic_for_doc/f2_04.png)
+
+## Krajové stavy
+### add
+![img](./pic_for_doc/ERR01.png)
+### remove
+![img](./pic_for_doc/ERR02.png)
+### start
+![img](./pic_for_doc/ERR03.png)
+### change
+![img](./pic_for_doc/ERR04.png)
+### regex
+![img](./pic_for_doc/ERR05.png)
+### libraries
+![img](./pic_for_doc/ERR06.png)
+### add
+![img](./pic_for_doc/ERR07.png)
+### remove
+![img](./pic_for_doc/ERR08.png)
