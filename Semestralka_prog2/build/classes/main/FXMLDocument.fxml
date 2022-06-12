@@ -154,7 +154,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorChangeFile" prefHeight="672.0" prefWidth="893.0">
+      <AnchorPane fx:id="AnchorChangeFile" prefHeight="672.0" prefWidth="893.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#07110d" height="672.0" stroke="BLACK" strokeType="INSIDE" width="893.0" />
             <AnchorPane layoutX="486.0" layoutY="344.0" prefHeight="200.0" prefWidth="200.0">
