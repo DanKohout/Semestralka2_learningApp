@@ -96,14 +96,15 @@ classDiagram
   Semestralka_prog2 <|-- FXMLDocument
   Semestralka_prog2 <|-- FXMLDocumentController
   class FXMLDocumentController{
+  - ArrayList ⟨MyFile⟩
+  - ArrayList ⟨Library⟩
     +addFile()
     +removeFile()
     +start()
     +startLibrary()
     +changeFile()
   }
-  FXMLDocumentController <-- GUIForLearning
-  GUIForLearning <-- FXMLDocumentController
+  FXMLDocumentController -- GUIForLearning
   class GUIForLearning{
     +start()
   }
@@ -124,8 +125,8 @@ classDiagram
   Library o--o Files : implements
   MyFile o--o Files : implements
   <<interface>> Files
-  MyFile --> Word
-  Library --> Word
+  Library <-- Word
+  MyFile <-- Word
   MyFile --> SortMethod : enum
   GUIForLearning ..  BinaryFilesManager : uses
   FXMLDocumentController ..  BinaryFilesManager : uses
