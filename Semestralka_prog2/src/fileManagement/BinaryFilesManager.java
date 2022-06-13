@@ -24,9 +24,6 @@ import java.util.ArrayList;
  */
 public class BinaryFilesManager {
 
-    /*private static ArrayList<LocalDate> when = new ArrayList<>();
-    private static ArrayList<String> fromWhere = new ArrayList<>();
-    private static ArrayList<Integer> numOfWords = new ArrayList<>();*/
     private static ArrayList<Record> records = new ArrayList<>();
     private static int helpingNumber = 0;
     private static File f = new File("data/data2.dat");
@@ -45,9 +42,6 @@ public class BinaryFilesManager {
                 if (numOfWordsLearned != 0) {
                     readBinaryResults(f);
                     records.add(new Record(l, fileName, numOfWordsLearned));
-                    /*when.add(l);
-                    fromWhere.add(fileName);
-                    numOfWords.add(numOfWordsLearned);*/
                     saveToBinary(f);
                 }
                 return true;
