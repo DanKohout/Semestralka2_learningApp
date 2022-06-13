@@ -51,12 +51,12 @@ Program slouží pro učení se slovíček a bude v GUI dělané pomocí javafx.
 ## Jednotlivá okna a jejich funkce (Funkční specifikace)
 ### Hlavní menu
 ![img](./pic_for_doc/okno1.png)
-+ Add - přidání souboru
++ Add - přidání vlastního souboru, ze kterého se podzeji budete chtít učit
 + Remove - odebrání vybraného souboru z aplikace
-+ Change - upravování vybraného souboru (přesunutí do okna change)
-+ Start - po vybrání souboru, přesunutí do okna Proces Učení
-+ Knihovny - přesun do okna Knihoven ze kterých se můžeš učit
-+ Historie - přesun do okna Historie, kde jsou záznamy o počtu naučených slovíček
++ Change - upravování slovíček vybraného souboru (přesunutí do okna change)
++ Start - po vybrání souboru, se můžete začít učit (přesun do okna Proces učení)
++ Knihovny - předpřipravené soubory pro učení (přesun do okna Knihoven)
++ Historie - záznamy o počtu naučených slovíček (přesun do okna Historie)
 ### Úprava
 ![img](./pic_for_doc/okno2.png)
 + remove - odstranění slovíčka z daného souboru
@@ -85,11 +85,13 @@ Program slouží pro učení se slovíček a bude v GUI dělané pomocí javafx.
 + String translation
 + oddělení pomocí "="
 + příklad: "učit se=learn"
++ další slovíčko ja na novém řádku
 ### Binární soubory
 + jsou zároveň vstupní i výstupní
 + LocalDate - datum záznamu
 + String - jméno daného souboru
 + Integer - počet naučených slov
++ další záznam je na novém řádku
 
 ## Diagram (zjednodušený)            
 
@@ -132,6 +134,7 @@ classDiagram
   MyFile --> SortMethod : enum
   GUIForLearning ..  BinaryFilesManager : uses
   FXMLDocumentController ..  BinaryFilesManager : uses
+  BinaryFilesManager <-- Record
   <<static>> BinaryFilesManager
 ```
 
@@ -172,3 +175,23 @@ classDiagram
 ![img](./pic_for_doc/ERR07.png)
 ### remove word
 ![img](./pic_for_doc/ERR08.png)
+
+## Pracování s knihovnou (javafx GUI)
+### Grafické rozhraní
++  vytváří se v souboru FXMLDocument
++  má svůj vlastní jazyk, který je konstrukcí a některými funkcemi velice podobný HTML jazyku
+#### propojení s kódem
+  + pomocí souboru FXMLDocumentController
+### Automatické generování
++ pomocí programu SceneBuilder
+### Prostředí SceneBuilder
+![img](./pic_for_doc/SceneBuilder.png)
+#### popis pracování v SceneBuilder
++ nejprve si vybereme z levé horní části s jakými prvky (tlačítko, popisek atd.) chceme pracovat a poté je přetáhneme na plátno
++ poté můžeme každý prvek upravit podle našich potřeb (výška, šířka, styl textu, barva a mnoho dalších)
++ pro propojení s programem jsou dvě možnosti :
+    + Pojmenovat daný prvek a napsat v FXMLDocumentController :
+          @FXML <br>
+          private typ_prvku jmeno_prvku;
+    + Vybrat jednu z mnoha možností akcí (při stlačení myši, při přejetí myši, při zmáčknutí klávesy atd.) a připsat název metody, která se bude při této akci volat. V kódu to bude mít metoda také označení @FXML stejně jako při pojmenování prvku
+
