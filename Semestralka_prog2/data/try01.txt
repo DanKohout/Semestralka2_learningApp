@@ -1,6 +1,6 @@
-napsat=write
-síla=power
-jezdit=drive
-slovo=word
-číst=read
 změna=change
+jezdit=drive
+síla=power
+číst=read
+slovo=word
+Dobrý den=Hello

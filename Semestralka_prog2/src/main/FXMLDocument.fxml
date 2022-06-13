@@ -42,7 +42,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </TextField>
-                    <Label layoutX="33.0" layoutY="27.0" minHeight="16" minWidth="69" prefHeight="42.0" prefWidth="241.0" text="zadejte adresář txt souboru &#10;pro načtení dat (bez přípony)" textFill="#ababab">
+                    <Label layoutX="33.0" layoutY="7.0" minHeight="16" minWidth="69" prefHeight="62.0" prefWidth="241.0" text="zadejte cestu k vašemu txt &#10;souboru, ze kterého se chcete&#10;učit (bez přípony .txt)" textFill="#ababab">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -98,13 +98,12 @@
             </AnchorPane>
             <AnchorPane layoutX="49.0" layoutY="472.0" prefHeight="126.0" prefWidth="363.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#05b27011" height="152.0" layoutY="1.0" stroke="#05b373" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="363.0" />
-                  <Label layoutX="33.0" layoutY="21.0" text="messages for user" textFill="#ababab">
+                  <Label layoutX="33.0" layoutY="21.0" text="messages for user:" textFill="#ababab">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="msgLabel" layoutX="33.0" layoutY="51.0" text="welcome" textFill="#ababab">
+                  <Label fx:id="msgLabel" layoutX="33.0" layoutY="42.0" text="welcome" textFill="#ababab">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>

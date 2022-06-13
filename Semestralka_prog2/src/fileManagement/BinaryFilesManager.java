@@ -24,9 +24,10 @@ import java.util.ArrayList;
  */
 public class BinaryFilesManager {
 
-    private static ArrayList<LocalDate> when = new ArrayList<>();
+    /*private static ArrayList<LocalDate> when = new ArrayList<>();
     private static ArrayList<String> fromWhere = new ArrayList<>();
-    private static ArrayList<Integer> numOfWords = new ArrayList<>();
+    private static ArrayList<Integer> numOfWords = new ArrayList<>();*/
+    private static ArrayList<Record> records = new ArrayList<>();
     private static int helpingNumber = 0;
     private static File f = new File("data/data2.dat");
 
@@ -43,15 +44,15 @@ public class BinaryFilesManager {
             if (f.exists()) {
                 if (numOfWordsLearned != 0) {
                     readBinaryResults(f);
-                    when.add(l);
+                    records.add(new Record(l, fileName, numOfWordsLearned));
+                    /*when.add(l);
                     fromWhere.add(fileName);
-                    numOfWords.add(numOfWordsLearned);
+                    numOfWords.add(numOfWordsLearned);*/
                     saveToBinary(f);
                 }
                 return true;
             } else {
                 f.createNewFile();
-                System.out.println("file data/data2.dat vytvořen");
                 if (numOfWordsLearned != 0) {
                     addRecord(l, fileName, numOfWordsLearned);
                 }
@@ -124,14 +125,14 @@ public class BinaryFilesManager {
      */
     private static void saveToBinary(File results) throws FileNotFoundException, IOException {
         try (DataOutputStream out = new DataOutputStream(new FileOutputStream(results, true))) {
-            for (int i = helpingNumber; i < when.size(); i++) {
+            for (int i = helpingNumber; i < records.size(); i++) {
 
-                int yyyy = when.get(i).getYear();
-                int mm = when.get(i).getMonthValue();
-                int dd = when.get(i).getDayOfMonth();
+                int yyyy = records.get(i).getDate().getYear();
+                int mm = records.get(i).getDate().getMonthValue();
+                int dd = records.get(i).getDate().getDayOfMonth();
 
-                String name = fromWhere.get(i);
-                int number = numOfWords.get(i);
+                String name = records.get(i).getFileName();
+                int number = records.get(i).getNWordsLearned();
 
                 out.writeInt(yyyy);
                 out.writeInt(mm);
@@ -150,10 +151,8 @@ public class BinaryFilesManager {
      */
     private static void readBinaryResults(File results) throws FileNotFoundException, IOException {
         try (DataInputStream in = new DataInputStream(new FileInputStream(results))) {
-            if (!when.isEmpty()) {
-                when.clear();
-                fromWhere.clear();
-                numOfWords.clear();
+            if (!records.isEmpty()) {
+                records.clear();
             }
             boolean end = false;
             int i = 0;
@@ -164,10 +163,10 @@ public class BinaryFilesManager {
                     int dd = in.readInt();
                     String name = in.readUTF();
                     int number = in.readInt();
-
-                    when.add(LocalDate.parse(formatDate(yyyy, mm, dd)));
+                    records.add(new Record(LocalDate.parse(formatDate(yyyy, mm, dd)), name, number));
+                    /*when.add(LocalDate.parse(formatDate(yyyy, mm, dd)));
                     fromWhere.add(name);
-                    numOfWords.add(number);
+                    numOfWords.add(number);*/
                     i++;
                     helpingNumber = i;
                 } catch (EOFException e) {
@@ -203,8 +202,8 @@ public class BinaryFilesManager {
      */
     public static String tooString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < when.size(); i++) {
-            sb.append(String.format("%s                %-25d %s", when.get(i).toString(), numOfWords.get(i), fromWhere.get(i)));
+        for (int i = 0; i < records.size(); i++) {
+            sb.append(String.format("%s                %-25d %s", records.get(i).getDate().toString(), records.get(i).getNWordsLearned(), records.get(i).getFileName()));
             sb.append("\n");
         }
         return sb.toString();
