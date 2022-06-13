@@ -176,22 +176,28 @@ classDiagram
 ### remove word
 ![img](./pic_for_doc/ERR08.png)
 
-## Pracování s knihovnou (javafx GUI)
+## Pracování s knihovnou (*javafx GUI*)
 ### Grafické rozhraní
 +  vytváří se v souboru FXMLDocument
 +  má svůj vlastní jazyk, který je konstrukcí a některými funkcemi velice podobný HTML jazyku
 #### propojení s kódem
   + pomocí souboru FXMLDocumentController
-### Automatické generování
+### Automatické generování pro FXMLDocument
 + pomocí programu SceneBuilder
 ### Prostředí SceneBuilder
 ![img](./pic_for_doc/SceneBuilder.png)
-#### popis pracování v SceneBuilder
-+ nejprve si vybereme z levé horní části s jakými prvky (tlačítko, popisek atd.) chceme pracovat a poté je přetáhneme na plátno
-+ poté můžeme každý prvek upravit podle našich potřeb (výška, šířka, styl textu, barva a mnoho dalších)
-+ pro propojení s programem jsou dvě možnosti :
-    + Pojmenovat daný prvek a napsat v FXMLDocumentController :
-          @FXML <br>
-          private typ_prvku jmeno_prvku;
-    + Vybrat jednu z mnoha možností akcí (při stlačení myši, při přejetí myši, při zmáčknutí klávesy atd.) a připsat název metody, která se bude při této akci volat. V kódu to bude mít metoda také označení @FXML stejně jako při pojmenování prvku
+### Popis pracování v SceneBuilder
++ nejprve si vybereme z levé horní části s jakými prvky chceme pracovat (*tlačítko, popisek atd.*) a poté je přetáhneme na plátno
++ poté můžeme každý prvek upravit podle našich potřeb (*výška, šířka, styl textu, barva a mnoho dalších*)
++ prvky si můžete rozdělit do skupin pro lepší přehlednost a více funkcí pomocí " **Containers** " (*nalevo nahoře*)
++ pro propojení s programem máte dvě možnosti :
+    + Pomocí pojmenování
+      + Pojmenovat daný prvek a napsat v FXMLDocumentController :<br>
+          **@FXML <br>
+          private typ_prvku jmeno_prvku;**<br>
+      + typ_prvku musíte naimportovat protože se jedná o objekt knihovny javafx (např. *import javafx.scene.control.Button*)
+    + Pomocí akcí a metod :
+      + Vybrat jednu z mnoha možností akcí (*při stlačení myši, při přejetí myši, při zmáčknutí klávesy atd.*) 
+      + Připsat název metody (která se bude při této akci volat)
+      + V kódu to bude mít metoda také označení **@FXML** stejně jako při pojmenování prvku
 
